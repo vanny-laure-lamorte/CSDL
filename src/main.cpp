@@ -6,7 +6,7 @@ using namespace std;
 #include "game.hpp"
 #include "screen.h"
 #include "menu.h"
-#include "menu_bis.h"
+// #include "menu_bis.h"
 
 int framesCounter = 0;
 bool gameOn = false;

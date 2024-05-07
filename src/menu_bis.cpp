@@ -3,9 +3,9 @@
 #include "menu_bis.h"
 #include "screen.h"
 
-Rectangle btn1 = {screenWidth / 2 - 200, 150, 400, 100};
-Rectangle btn2 = {screenWidth / 2 - 200, 350, 400, 100};
-Rectangle btn3 = {screenWidth / 2 - 200, 550, 400, 100};
+Rectangle btn1_bis = {screenWidth / 2 - 200, 150, 400, 100};
+Rectangle btn2_bis = {screenWidth / 2 - 200, 350, 400, 100};
+Rectangle btn3_bis = {screenWidth / 2 - 200, 550, 400, 100};
 
 bool btn1Action, btn2Action = false;
 const char *msg = "Game of Life by Vanny, Lucas & Hamza";
@@ -22,7 +22,7 @@ bool draw_menu(int &framesCounter)
     mousePoint = GetMousePosition();
 
     // Button 1
-    if (CheckCollisionPointRec(mousePoint, btn1))
+    if (CheckCollisionPointRec(mousePoint, btn1_bis))
     {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
@@ -47,7 +47,7 @@ bool draw_menu(int &framesCounter)
     }
 
     // Button 2
-    if (CheckCollisionPointRec(mousePoint, btn2))
+    if (CheckCollisionPointRec(mousePoint, btn2_bis))
     {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
@@ -69,7 +69,7 @@ bool draw_menu(int &framesCounter)
     }
 
     // Button 3
-    if (CheckCollisionPointRec(mousePoint, btn3))
+    if (CheckCollisionPointRec(mousePoint, btn3_bis))
     {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
@@ -101,13 +101,13 @@ bool draw_menu(int &framesCounter)
         framesCounter += 8;
 
     // Dessin des Buttons
-    DrawRectangleRounded(btn1, 0.5, 0, nmcolor1);
+    DrawRectangleRounded(btn1_bis, 0.5, 0, nmcolor1);
     DrawText("Jouer", screenWidth / 2 - (MeasureText("Jouer", 40) / 2), 180, 40, BLACK);
 
-    DrawRectangleRounded(btn2, 0.5, 0, nmcolor2);
+    DrawRectangleRounded(btn2_bis, 0.5, 0, nmcolor2);
     DrawText("Continuer", screenWidth / 2 - (MeasureText("Continuer", 40) / 2), 380, 40, BLACK);
 
-    DrawRectangleRounded(btn3, 0.5, 0, nmcolor3);
+    DrawRectangleRounded(btn3_bis, 0.5, 0, nmcolor3);
     DrawText("Quitter", screenWidth / 2 - (MeasureText("Quitter", 40) / 2), 580, 40, BLACK);
 
     return false;
