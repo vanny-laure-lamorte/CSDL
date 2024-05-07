@@ -2,6 +2,7 @@
 #include "screen.h"
 #include "menu.h"
 #include "ball.h"
+#include "game.hpp"
 
 int framesCounter = 0;
 bool gameOn = false;
@@ -9,7 +10,7 @@ bool gameOn = false;
 int main()
 {
     Color darkGreen = Color{20, 160, 133, 255};
-    Ball ball = Ball();
+    // Ball ball = Ball();
     InitWindow(screenWidth, screenHeight, "My first RAYLIB program!");
     SetTargetFPS(60);
 
@@ -24,8 +25,10 @@ int main()
         }
         else
         {
-            ball.Update();
-            ball.Draw();
+            // ball.Update();
+            // ball.Draw();
+            draw_grid();
+
         }
         DrawFPS(10, 10);
         EndDrawing();
