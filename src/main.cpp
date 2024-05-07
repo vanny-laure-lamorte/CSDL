@@ -1,13 +1,14 @@
 #include <raylib.h>
-#include "screen.h"
-#include "menu_bis.h"
 #include <string>
-#include "game.hpp"
 using namespace std;
 
+
+
 // Load files
+#include "game.hpp"
 #include "screen.h"
 #include "menu.h"
+#include "menu_bis.h"
 
 int framesCounter = 0;
 bool gameOn = false;
@@ -45,8 +46,6 @@ int main()
     {
         BeginDrawing();
         ClearBackground(darkGreen);
-        ball.Update();
-        ball.Draw();
         if (!gameOn)
         {
             DrawTexture(background, 0, 0, WHITE);
