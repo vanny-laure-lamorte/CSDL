@@ -6,34 +6,35 @@
 
 int framesCounter = 0;
 bool gameOn = false;
-// SetWindowIcon()
+
 int main()
 {
     Color darkGreen = Color{20, 160, 133, 255};
     // Ball ball = Ball();
-    InitWindow(screenWidth, screenHeight, "My first RAYLIB program!");
+    InitWindow(screenWidth, screenHeight, "Game of Life by Lucas, Vanny, Hamza");
     SetTargetFPS(60);
+    Image logo = LoadImage("src/img/icon.png");
+    SetWindowIcon(logo);
 
-    while (!WindowShouldClose())
+while (!WindowShouldClose())
+{
+    BeginDrawing();
+    ClearBackground(darkGreen);
+    if (!gameOn)
     {
-        BeginDrawing();
-        ClearBackground(darkGreen);
-        if (!gameOn)
-        {
-            gameOn = draw_menu(framesCounter);
-            draw_title();
-        }
-        else
-        {
-            // ball.Update();
-            // ball.Draw();
-            draw_grid();
-
-        }
-        DrawFPS(10, 10);
-        EndDrawing();
+        gameOn = draw_menu(framesCounter);
+        draw_title();
     }
+    else
+    {
+        // ball.Update();
+        // ball.Draw();
+        draw_grid();
+    }
+    DrawFPS(10, 10);
+    EndDrawing();
+}
 
-    CloseWindow();
-    return 0;
+CloseWindow();
+return 0;
 }
