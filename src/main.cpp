@@ -6,7 +6,6 @@ using namespace std;
 #include "game.hpp"
 #include "screen.h"
 #include "menu.h"
-// #include "menu_bis.h"
 
 int framesCounter = 0;
 bool gameOn = false;
@@ -17,37 +16,29 @@ int main()
     SetTargetFPS(60);
 
     load_img_menu();
-    load_font_menu();   
-
+    load_font_menu();
     // Color&
     Color darkGreen = Color{20, 160, 133, 255};
-
-    Rectangle rec = { screenWidth / 4, screenHeight / 4, screenWidth / 2, screenHeight / 2 };
-    DrawRectangleRec(rec, RED);
-
-
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
     {
+        DrawFPS(10, 10);
         BeginDrawing();
         ClearBackground(darkGreen);
         if (!gameOn)
-        {         
+        {
 
-            menu();
+            gameOn = menu();
             // gameOn = draw_menu(framesCounter);
             // draw_title();
         }
         else
         {
-   
 
             draw_grid();
         }
 
-
-        DrawFPS(10, 10);
         EndDrawing();
     }
 
