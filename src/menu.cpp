@@ -62,10 +62,9 @@ Font font1;
 Font font2;
 
 void load_font_menu() {
-   // Font font1 = LoadFont("resources/Television.ttf"); 
-   // Font font2 = LoadFont("resources/Roboto-Black.ttf");
-   font1 = LoadFont("src/font/Television.ttf"); 
-   font2 = LoadFont("src/font/Roboto-Black.ttf"); 
+
+   font1 = LoadFontEx("src/font/Television.ttf", 400, NULL, NULL); 
+   font2 = LoadFontEx("src/font/Roboto-Black.ttf", 400, 0, 252); 
 }
 
 void unload_font_menu() {
@@ -83,17 +82,17 @@ int menu(){
     DrawTexture(t_btn3, 100, 250, WHITE);
 
 // Title
-DrawTextEx(font1, "Game of Life", (Vector2){ 260,10 }, 50, 2, DARKGRAY);
-DrawTextEx(font1, "by Hamza N., Lucas M.D.M & Vanny L.", (Vector2){ 260,130 }, 16, 2, DARKGRAY);
+DrawTextEx(font1, "Game of Life",(Vector2){ 140, 80 }, 50, 2, DARKGRAY);
+DrawTextEx(font1, "by Hamza N., Lucas M.D.M & Vanny L.", (Vector2){ 140, 120 }, 16, 2, DARKGRAY);
 
 // Menu options
-DrawTextEx(font1, "Game of Life", (Vector2){ 260,215 }, 30, 2, DARKGRAY);
-DrawTextEx(font1, "Rules & Origins", (Vector2){ 270, 315 }, 30, 2, DARKGRAY);
-DrawTextEx(font1, "Exit", (Vector2){ 260, 410}, 30, 2, DARKGRAY);
+DrawTextEx(font1, "Game of Life", (Vector2){ 170,200 }, 30, 2, DARKGRAY);
+DrawTextEx(font1, "Rules & Origins", (Vector2){ 170, 300 }, 30, 2, DARKGRAY);
+DrawTextEx(font1, "Exit", (Vector2){ 240, 390}, 30, 2, DARKGRAY);
 
 // Copyright
-DrawTextEx(font1, "© ", (Vector2){ 190,470}, 15, 2, DARKGRAY);
-DrawTextEx(font2,"Copyright | All rights reversed.", (Vector2){ 250, 470}, 11, 2, DARKGRAY);
+DrawTextEx(font2, "© ", (Vector2){ 155, 458}, 15, 2, DARKGRAY);
+DrawTextEx(font2,"Copyright | All rights reversed.", (Vector2){ 170, 460}, 11, 2, DARKGRAY);
 
 
     return 0;

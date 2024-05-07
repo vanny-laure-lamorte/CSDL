@@ -48,7 +48,7 @@ int main()
         EndDrawing();
     }
 
-    unload_font_menu();
+    // unload_font_menu();
     unload_img_menu();
 
     CloseWindow();
