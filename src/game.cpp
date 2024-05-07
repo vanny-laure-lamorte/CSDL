@@ -1,6 +1,6 @@
 #include <raylib.h>
-#include "game.hpp"
-#include "screen.h"
+#include "../include/game.hpp"
+#include "../include/screen.hpp"
 #include <iostream>
 int cellSize = 25;
 int columns = screenWidth / cellSize;

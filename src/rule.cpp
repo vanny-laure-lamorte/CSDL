@@ -1,5 +1,5 @@
 #include <raylib.h>
 #include "string"
 
-#include "screen.h"
+#include "../include/screen.hpp"
 using namespace std;
