@@ -22,6 +22,9 @@ int main()
     // Color&
     Color darkGreen = Color{20, 160, 133, 255};
 
+    Rectangle rec = { screenWidth / 4, screenHeight / 4, screenWidth / 2, screenHeight / 2 };
+    DrawRectangleRec(rec, RED);
+
 
     SetTargetFPS(60);
 
@@ -48,7 +51,7 @@ int main()
         EndDrawing();
     }
 
-    // unload_font_menu();
+    unload_font_menu();
     unload_img_menu();
 
     CloseWindow();

@@ -11,6 +11,10 @@ using namespace std;
 // COLOR
 Color grey1 = Color{100, 54, 54, 54};
 
+
+// CLICK
+Vector2 mousePoint = {0.0f, 0.0f};
+
 //**** IMAGES
 
 Image logo; 
@@ -73,27 +77,98 @@ void unload_font_menu() {
 }
 
 
-int menu(){  
+// RECT
+Rectangle rect_btn1 = {140, 170, 245, 80};
+Rectangle rect_btn2 = {140, 270 , 245, 80};
+Rectangle rect_btn3 = {140, 370, 245, 80};  
+
+// rect_btn1.x+40, rect_btn1.y+320, rect_btn1.width-85, rect_btn1.height-250
+
+
+bool menu(){  
 
 // Display images
     DrawTexture(background, 0, 0, WHITE);
     DrawTexture(t_btn1, 100, 50, WHITE);
     DrawTexture(t_btn2, 100, 150, WHITE);
-    DrawTexture(t_btn3, 100, 250, WHITE);
+    DrawTexture(t_btn3, 100, 250, WHITE);   
+
 
 // Title
 DrawTextEx(font1, "Game of Life",(Vector2){ 140, 80 }, 50, 2, DARKGRAY);
 DrawTextEx(font1, "by Hamza N., Lucas M.D.M & Vanny L.", (Vector2){ 140, 120 }, 16, 2, DARKGRAY);
 
-// Menu options
-DrawTextEx(font1, "Game of Life", (Vector2){ 170,200 }, 30, 2, DARKGRAY);
-DrawTextEx(font1, "Rules & Origins", (Vector2){ 170, 300 }, 30, 2, DARKGRAY);
-DrawTextEx(font1, "Exit", (Vector2){ 240, 390}, 30, 2, DARKGRAY);
+
 
 // Copyright
 DrawTextEx(font2, "© ", (Vector2){ 155, 458}, 15, 2, DARKGRAY);
 DrawTextEx(font2,"Copyright | All rights reversed.", (Vector2){ 170, 460}, 11, 2, DARKGRAY);
 
 
-    return 0;
+// Event
+
+    mousePoint = GetMousePosition();
+
+// Button 1
+    if (CheckCollisionPointRec(mousePoint, rect_btn1))
+    {  DrawTexture(t_btn1, 103, 53, WHITE);
+DrawTextEx(font1, "Game of Life", (Vector2){ 170,200 }, 30, 2, DARKGRAY);
+
+
+        }
+        else
+        {
+        DrawTexture(t_btn1, 100, 50, WHITE);
+        DrawTextEx(font1, "Game of Life", (Vector2){ 170,200 }, 30, 2, DARKGRAY);
+
+
+        // Menu options
+    
+        }
+
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+          return true;
+        }
+
+// Button 2
+    else if (CheckCollisionPointRec(mousePoint, rect_btn2))    {
+  
+        DrawTexture(t_btn2, 103, 153, WHITE);
+        DrawTextEx(font1, "Rules & Origins", (Vector2){ 170, 300 }, 30, 2, DARKGRAY);
+
+    }
+        else
+        {
+                DrawTexture(t_btn2, 100, 150, WHITE);      
+                DrawTextEx(font1, "Rules & Origins", (Vector2){ 170, 300 }, 30, 2, DARKGRAY);              
+        }
+
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            return true;
+        }
+
+
+    // Button 3
+    else if (CheckCollisionPointRec(mousePoint, rect_btn3))    {
+        DrawTexture(t_btn3, 103, 253, WHITE);    
+        DrawTextEx(font1, "Exit", (Vector2){ 240, 390}, 30, 2, DARKGRAY);         
+        }
+        else
+        {
+
+        DrawTexture(t_btn3, 100, 250, WHITE);   
+        DrawTextEx(font1, "Exit", (Vector2){ 240, 390}, 30, 2, DARKGRAY);    
+         
+        }
+
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            CloseWindow();
+        }
+
+
+    return false;
 }
+

@@ -10,6 +10,6 @@ void load_font_menu();
 void unload_font_menu();
 
 // Display all
-int menu(void); 
+bool menu(void); 
 
 #endif
