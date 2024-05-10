@@ -41,6 +41,10 @@ void unload_font_game()
     UnloadFont(M_font2);
 }
 
+void design_game() {
+    DrawRectangle(25, 30, 1150, 675, LIGHTGRAY);   
+}
+
 
 int main()
 {
@@ -90,7 +94,10 @@ int main()
         else if (gameOn == 10) 
         {
             DrawTexture(M_background, 0, 0, WHITE);
+            design_game();
             draw_grid(); 
+            DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
+
         }
         else if (gameOn == 20) 
         {
