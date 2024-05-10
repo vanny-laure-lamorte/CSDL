@@ -1,9 +1,9 @@
 #include <raylib.h>
 
 // Load files
-#include "../include/game.hpp"   // <------------
-#include "../include/screen.hpp" // <------------
-#include "../include/menu.hpp"   // <------------
+#include "../include/game.hpp"
+#include "../include/screen.hpp"
+#include "../include/menu.hpp" 
 #include "../include/rule.hpp"   
 
 int gameOn = 0; 
@@ -50,10 +50,19 @@ int main()
     // Background
     DrawTexture(M_background, 0, 0, WHITE);
 
-    DrawTextEx(M_font1, "Game of Life", (Vector2){50, 600}, 25, 2, DARKGRAY);
-
-
-
+    
+    DrawTextEx(M_font1, "Next generation", (Vector2){50, 600}, 25, 2, DARKGRAY);
+     
+    DrawTextEx(M_font1, "Start the automaton", (Vector2){50, 600}, 25, 2, DARKGRAY);
+     
+    DrawTextEx(M_font1, "Blank grid", (Vector2){100, 600}, 25, 2, DARKGRAY);
+     
+    DrawTextEx(M_font1, "Random path", (Vector2){150, 600}, 25, 2, DARKGRAY);
+     
+    DrawTextEx(M_font1, "Game of Life", (Vector2){200, 600}, 25, 2, DARKGRAY);
+     
+    DrawTextEx(M_font1, " Quit", (Vector2){250, 600}, 25, 2, DARKGRAY);
+    
     
     // Menu
     load_img_menu();

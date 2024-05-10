@@ -17,7 +17,6 @@ Vector2 R_mousePoint = {0.0f, 0.0f};
 //**** RECT
 Rectangle rect_menu;
 
-
 // Images
 void load_img_rule()
 {
@@ -46,7 +45,6 @@ void unload_font_rule()
 
 int draw_rule()
 {
-    // Rectangle
 
     // Display images
     DrawTexture(R_background, 0, 0, WHITE);
@@ -68,22 +66,16 @@ int draw_rule()
     DrawTextEx(R_font2, "phenomena.", (Vector2){110, 500}, 15, 1, LIGHTGRAY);
 
     // back to menu
-   
 
+    rect_menu = {1070, 25, 100, 30};
 
-// Event
+    R_mousePoint = GetMousePosition();
 
-
-    // Update button rectangles
-    rect_menu = { 1070, 25, 100, 30};
-
-  R_mousePoint = GetMousePosition();
-
-     if (CheckCollisionPointRec(R_mousePoint, rect_menu))
+    if (CheckCollisionPointRec(R_mousePoint, rect_menu))
     {
         DrawRectangleRounded((Rectangle){1070, 25, 102, 32}, 0.1f, 0, WHITE);
-    DrawRectangleRoundedLines((Rectangle){1070, 25, 103, 32}, 0.1f, 0, 2, BLACK);
-    DrawTextEx(R_font2, "MENU", (Vector2){1105, 32}, 15, 1, BLACK);
+        DrawRectangleRoundedLines((Rectangle){1070, 25, 103, 32}, 0.1f, 0, 2, BLACK);
+        DrawTextEx(R_font2, "MENU", (Vector2){1105, 32}, 15, 1, BLACK);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -92,11 +84,9 @@ int draw_rule()
     }
     else
     {
-    DrawRectangleRounded((Rectangle){1070, 25, 100, 30}, 0.1f, 0, BLACK);
-    DrawRectangleRoundedLines((Rectangle){1070, 25, 100, 30}, 0.1f, 0, 2, WHITE);
-    DrawTextEx(R_font2, "MENU", (Vector2){1105, 32}, 15, 1, LIGHTGRAY);
-        
+        DrawRectangleRounded((Rectangle){1070, 25, 100, 30}, 0.1f, 0, BLACK);
+        DrawRectangleRoundedLines((Rectangle){1070, 25, 100, 30}, 0.1f, 0, 2, WHITE);
+        DrawTextEx(R_font2, "MENU", (Vector2){1105, 32}, 15, 1, LIGHTGRAY);
     }
     return 20;
-
 }
