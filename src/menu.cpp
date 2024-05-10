@@ -78,7 +78,7 @@ Rectangle rect_btn1 = {140, 170, 245, 80};
 Rectangle rect_btn2 = {140, 270, 245, 80};
 Rectangle rect_btn3 = {140, 370, 245, 80};
 
-bool menu()
+int menu()
 {
 
     // Display images
@@ -106,7 +106,7 @@ bool menu()
         DrawTextEx(font1, "Game of Life", (Vector2){170, 200}, 30, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return true;
+            return 10;
         }
     }
     else
@@ -125,7 +125,7 @@ bool menu()
         DrawTextEx(font1, "Rules & Origins", (Vector2){170, 300}, 30, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return true;
+            return 20;
         }
     }
     else
@@ -154,5 +154,5 @@ bool menu()
         DrawTextEx(font1, "Exit", (Vector2){240, 390}, 30, 2, DARKGRAY);
     }
 
-    return false;
+    return 0;
 }
