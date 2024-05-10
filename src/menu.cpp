@@ -27,6 +27,11 @@ Texture2D t_btn3;
 Font font1;
 Font font2;
 
+//**** RECT
+Rectangle rect_btn1;
+Rectangle rect_btn2;
+Rectangle rect_btn3;
+
 //**** TEXTE
 float textWidth_title;
 float textWidth_name;
@@ -79,10 +84,7 @@ void unload_font_menu()
     UnloadFont(font2);
 }
 
-//**** RECT
-Rectangle rect_btn1;
-Rectangle rect_btn2;
-Rectangle rect_btn3;
+
 
 int menu()
 {
