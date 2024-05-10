@@ -24,15 +24,14 @@ void load_img_rule()
     R_background = LoadTexture("assets/img/background4.png");
 }
 
-void unload_img_rule()
-{
+void unload_img_rule(){
+    
     UnloadTexture(R_background);
 }
 
 // Font
 void load_font_rule()
 {
-
     R_font1 = LoadFontEx("assets/font/Television.ttf", 400, NULL, NULL);
     R_font2 = LoadFontEx("assets/font/Roboto-Black.ttf", 400, 0, 252);
 }

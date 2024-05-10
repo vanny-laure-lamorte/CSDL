@@ -47,10 +47,7 @@ int main()
     InitWindow(screenWidth, screenHeight, "Game of Life");
     SetTargetFPS(60);
 
-    // Background
-    DrawTexture(M_background, 0, 0, WHITE);
-
-    
+   
     DrawTextEx(M_font1, "Next generation", (Vector2){50, 600}, 25, 2, DARKGRAY);
      
     DrawTextEx(M_font1, "Start the automaton", (Vector2){50, 600}, 25, 2, DARKGRAY);
@@ -92,6 +89,7 @@ int main()
         }
         else if (gameOn == 10) 
         {
+            DrawTexture(M_background, 0, 0, WHITE);
             draw_grid(); 
         }
         else if (gameOn == 20) 

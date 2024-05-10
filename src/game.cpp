@@ -18,4 +18,6 @@ int draw_grid()
          DrawRectangle(25 + column * cellSize, 30+ row * cellSize, cellSize - 1, cellSize - 1, WHITE);
         }
     }
+
+    return 0;
 }
