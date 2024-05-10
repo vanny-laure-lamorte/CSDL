@@ -1,12 +1,15 @@
 #include <raylib.h>
+#include <iostream>
+using namespace std;
+
 #include "../include/game.hpp"
 #include "../include/screen.hpp"
-#include <iostream>
+
 int cellSize = 25;
 int columns = screenWidth / cellSize;
 int rows = screenHeight / cellSize;
-using namespace std;
-void draw_grid()
+
+int draw_grid()
 {
     for (int row = 0; row < rows; row++)
     {
@@ -18,4 +21,5 @@ void draw_grid()
                 DrawRectangle(column * cellSize, row * cellSize, cellSize - 1, cellSize - 1, WHITE);
         }
     }
+    return 10;
 }

@@ -4,17 +4,70 @@
 #include "../include/game.hpp"   // <------------
 #include "../include/screen.hpp" // <------------
 #include "../include/menu.hpp"   // <------------
-#include "../include/rule.hpp"   // <------------
+#include "../include/rule.hpp"   
 
-int gameOn = 0; // <------------
+int gameOn = 0; 
+
+//**** FONT
+Font M_font1;
+Font M_font2;
+
+
+//**** IMAGES
+Texture2D M_background;
+
+void load_img_game()
+{
+
+    // Images Texture
+    M_background = LoadTexture("assets/img/background3.png");
+   
+}
+
+void unload_img_game()
+{
+    UnloadTexture(M_background); 
+}
+
+void load_font_game()
+{
+    M_font1 = LoadFontEx("assets/font/Television.ttf", 400, 0, 252);
+    M_font2 = LoadFontEx("assets/font/Roboto-Black.ttf", 400, 0, 252);
+}
+
+void unload_font_game()
+{
+    UnloadFont(M_font1);
+    UnloadFont(M_font2);
+}
+
 
 int main()
 {
-    InitWindow(screenWidth, screenHeight, "Game of Life by Lucas, Vanny, Hamza");
+    InitWindow(screenWidth, screenHeight, "Game of Life");
     SetTargetFPS(60);
 
-    load_img_menu();  // <------------
-    load_font_menu(); // <------------
+    // Background
+    DrawTexture(M_background, 0, 0, WHITE);
+
+    DrawTextEx(M_font1, "Game of Life", (Vector2){50, 600}, 25, 2, DARKGRAY);
+
+
+
+    
+    // Menu
+    load_img_menu();
+    load_font_menu();
+
+    // Game 
+    load_img_game();
+    load_font_game();
+
+    // Rule
+    load_font_rule();
+    load_img_rule();
+
+
     // Color
     Color darkGreen = Color{20, 160, 133, 255};
     SetTargetFPS(60);
@@ -24,23 +77,32 @@ int main()
         DrawFPS(10, 10);
         BeginDrawing();
         ClearBackground(darkGreen);
-        if (gameOn == 0) // <------------
+        if (gameOn == 0) 
         {
-            gameOn = menu(); // <------------
+            gameOn = menu(); 
         }
-        else if (gameOn == 10) // <------------
+        else if (gameOn == 10) 
         {
-            draw_grid(); // <------------
+            draw_grid(); 
         }
-        else if (gameOn == 20) // <------------
+        else if (gameOn == 20) 
         {
-            draw_rule(); // <------------
+            gameOn = draw_rule(); 
         }
         EndDrawing();
     }
 
-    unload_font_menu(); // <------------
-    unload_img_menu();  // <------------
+    // Menu
+    unload_font_menu();
+    unload_img_menu();
+
+        // Game 
+    unload_img_game();
+    unload_font_game();
+
+    // Rule
+    unload_font_rule(); 
+    unload_img_rule();
 
     CloseWindow();
     return 0;

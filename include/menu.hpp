@@ -1,5 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef MENU_HPP
+#define MENU_HPP
 
 // Images
 void load_img_menu();

@@ -1,5 +1,6 @@
-#ifndef GAME_H
-#define GAME_H
-void draw_grid();
+#ifndef GAME_HPP
+#define GAME_HPP
+
+int draw_grid();
 
 #endif
