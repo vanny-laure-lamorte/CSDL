@@ -6,9 +6,7 @@
 #include "../include/menu.hpp"
 #include "../include/rule.hpp"
 
-
-DrawRectangleLinesEx({1025, 750, 150, 35}, 5, RED);
-
+// DrawRectangleLinesEx({1025, 750, 150, 35}, 5, RED);
 
 int gameOn = 0;
 
@@ -51,12 +49,12 @@ void load_img_game()
     rect_op4 = LoadImage("assets/img/btn.png");
     rect_op5 = LoadImage("assets/img/btn.png");
     rect_op6 = LoadImage("assets/img/btn.png");
-    ImageResize(&rect_op1, 150, 85);
-    ImageResize(&rect_op2, 150, 85);
-    ImageResize(&rect_op3, 150, 85);
-    ImageResize(&rect_op4, 150, 85);
-    ImageResize(&rect_op5, 150, 85);
-    ImageResize(&rect_op6, 150, 85);
+    ImageResize(&rect_op1, 165, 85);
+    ImageResize(&rect_op2, 165, 85);
+    ImageResize(&rect_op3, 165, 85);
+    ImageResize(&rect_op4, 165, 85);
+    ImageResize(&rect_op5, 165, 85);
+    ImageResize(&rect_op6, 165, 85);
 
     // Images Texture
     M_background = LoadTexture("assets/img/background3.png");
@@ -89,7 +87,7 @@ void unload_img_game()
 void load_font_game()
 {
     M_font1 = LoadFontEx("assets/font/Television.ttf", 400, 0, 252);
-    M_font2 = LoadFontEx("assets/font/Roboto-Black.ttf", 400, 0, 252);
+    M_font2 = LoadFontEx("assets/font/Anton-Regular.ttf", 300, 0, 252);
 }
 
 void unload_font_game()
@@ -109,6 +107,8 @@ int design_game()
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover1))
     {
         DrawTexture(t_rect_op1, 27, 692, WHITE);
+        DrawTextEx(M_font2, "Next generation", (Vector2){50, 725}, 15, 2, DARKGRAY);
+
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             return 31;
@@ -117,12 +117,14 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 25, 690, WHITE);
+        DrawTextEx(M_font2, "Next generation", (Vector2){50, 725}, 15, 2, DARKGRAY);
     }
 
     // Button
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover2))
     {
         DrawTexture(t_rect_op2, 27, 727, WHITE);
+        DrawTextEx(M_font2, "Start the automaton", (Vector2){45, 760}, 15, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             return 32;
@@ -131,20 +133,24 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op2, 25, 725, WHITE);
+        DrawTextEx(M_font2, "Start the automaton", (Vector2){35, 760}, 15, 2, DARKGRAY);
     }
 
     // Button
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover3))
     {
         DrawTexture(t_rect_op3, 512, 692, WHITE);
+        DrawTextEx(M_font2, "Blank grid", (Vector2){555, 725}, 15, 2, DARKGRAY);
+
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 32;
+            return 33;
         }
     }
     else
     {
         DrawTexture(t_rect_op3, 510, 690, WHITE);
+        DrawTextEx(M_font2, "Blank grid", (Vector2){555, 725}, 15, 2, DARKGRAY);
     }
 
     // Button
@@ -152,14 +158,17 @@ int design_game()
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover4))
     {
         DrawTexture(t_rect_op4, 512, 727, WHITE);
+        DrawTextEx(M_font2, "Random path", (Vector2){545, 760}, 15, 2, DARKGRAY);
+
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 32;
+            return 34;
         }
     }
     else
     {
         DrawTexture(t_rect_op4, 510, 725, WHITE);
+        DrawTextEx(M_font2, "Random path", (Vector2){545, 760}, 15, 2, DARKGRAY);
     }
 
     // Button
@@ -167,29 +176,35 @@ int design_game()
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover5))
     {
         DrawTexture(t_rect_op5, 1027, 692, WHITE);
+        DrawTextEx(M_font2, "Game of Life", (Vector2){1065, 725}, 15, 2, DARKGRAY);
+
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 32;
+            return 35;
         }
     }
     else
     {
         DrawTexture(t_rect_op5, 1025, 690, WHITE);
+        DrawTextEx(M_font2, "Game of Life", (Vector2){1065, 725}, 15, 2, DARKGRAY);
     }
 
-       // Button
+    // Button
 
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover6))
     {
-         DrawTexture(t_rect_op6, 1027, 727, WHITE);
+        DrawTexture(t_rect_op6, 1027, 727, WHITE);
+        DrawTextEx(M_font2, " Quit", (Vector2){1100, 760}, 15, 2, DARKGRAY);
+
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 32;
+            return 36;
         }
     }
     else
     {
-         DrawTexture(t_rect_op6, 1025, 725, WHITE);
+        DrawTexture(t_rect_op6, 1025, 725, WHITE);
+        DrawTextEx(M_font2, " Quit", (Vector2){1100, 760}, 15, 2, DARKGRAY);
     }
 
     return 37;
@@ -207,18 +222,6 @@ int main()
     rect_btn_hover4 = {510, 750, 150, 35};
     rect_btn_hover5 = {1025, 715, 150, 35};
     rect_btn_hover6 = {1025, 750, 150, 85};
-
-    DrawTextEx(M_font1, "Next generation", (Vector2){50, 600}, 25, 2, DARKGRAY);
-
-    DrawTextEx(M_font1, "Start the automaton", (Vector2){50, 600}, 25, 2, DARKGRAY);
-
-    DrawTextEx(M_font1, "Blank grid", (Vector2){100, 600}, 25, 2, DARKGRAY);
-
-    DrawTextEx(M_font1, "Random path", (Vector2){150, 600}, 25, 2, DARKGRAY);
-
-    DrawTextEx(M_font1, "Game of Life", (Vector2){200, 600}, 25, 2, DARKGRAY);
-
-    DrawTextEx(M_font1, " Quit", (Vector2){250, 600}, 25, 2, DARKGRAY);
 
     // Menu
     load_img_menu();
@@ -252,8 +255,8 @@ int main()
             draw_grid();
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
-
         }
+
         else if (gameOn == 20)
         {
             gameOn = draw_rule();
