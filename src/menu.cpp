@@ -3,8 +3,8 @@
 using namespace std;
 
 // Load Files
-#include "menu.h"
-#include "screen.h"
+#include "../include/menu.hpp"
+#include "../include/screen.hpp"
 
 //**** COLOR
 Color grey1 = Color{100, 54, 54, 54};
@@ -40,15 +40,15 @@ void load_img_menu()
 {
     logo = LoadImage("src/img/icon.png");
     SetWindowIcon(logo);
-    btn1 = LoadImage("src/img/button1.png");
-    btn2 = LoadImage("src/img/button2.png");
-    btn3 = LoadImage("src/img/button3.png");
+    btn1 = LoadImage("assets/img/button1.png");
+    btn2 = LoadImage("assets/img/button2.png");
+    btn3 = LoadImage("assets/img/button3.png");
     ImageResize(&btn1, 330, 330);
     ImageResize(&btn2, 330, 330);
     ImageResize(&btn3, 330, 330);
 
     // Images Texture
-    background = LoadTexture("src/img/background3.png");
+    background = LoadTexture("assets/img/background3.png");
     t_btn1 = LoadTextureFromImage(btn1);
     t_btn2 = LoadTextureFromImage(btn2);
     t_btn3 = LoadTextureFromImage(btn3);
@@ -69,8 +69,9 @@ void unload_img_menu()
 
 void load_font_menu()
 {
-    font1 = LoadFontEx("src/font/Television.ttf", 400, NULL, NULL);
-    font2 = LoadFontEx("src/font/Roboto-Black.ttf", 400, 0, 252);
+
+    font1 = LoadFontEx("assets/font/Television.ttf", 400, NULL, NULL);
+    font2 = LoadFontEx("assets/font/Roboto-Black.ttf", 400, 0, 252);
 }
 
 void unload_font_menu()

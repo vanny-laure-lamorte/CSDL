@@ -1,23 +1,20 @@
 #include <raylib.h>
-#include <string>
-using namespace std;
 
 // Load files
-#include "game.hpp"
-#include "screen.h"
-#include "menu.h"
+#include "../include/game.hpp" // <------------
+#include "../include/screen.hpp" // <------------
+#include "../include/menu.hpp" // <------------
 
-int framesCounter = 0;
-bool gameOn = false;
+bool gameOn = false; // <------------
 
 int main()
 {
     InitWindow(screenWidth, screenHeight, "Game of Life by Lucas, Vanny, Hamza");
     SetTargetFPS(60);
 
-    load_img_menu();
-    load_font_menu();
-    // Color&
+    load_img_menu(); // <------------
+    load_font_menu(); // <------------
+    // Color 
     Color darkGreen = Color{20, 160, 133, 255};
     SetTargetFPS(60);
 
@@ -26,24 +23,21 @@ int main()
         DrawFPS(10, 10);
         BeginDrawing();
         ClearBackground(darkGreen);
-        if (!gameOn)
+        if (!gameOn) // <------------
         {
-
-            gameOn = menu();
-            // gameOn = draw_menu(framesCounter);
-            // draw_title();
+            gameOn = menu(); // <------------
         }
-        else
+        else // <------------
         {
 
-            draw_grid();
+            draw_grid(); // <------------
         }
 
         EndDrawing();
     }
 
-    unload_font_menu();
-    unload_img_menu();
+    unload_font_menu(); // <------------
+    unload_img_menu(); // <------------
 
     CloseWindow();
     return 0;
