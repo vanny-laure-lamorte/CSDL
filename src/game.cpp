@@ -4,22 +4,18 @@ using namespace std;
 
 #include "../include/game.hpp"
 #include "../include/screen.hpp"
-
-int cellSize = 25;
+#include <iostream>
+int cellSize = 5;
 int columns = screenWidth / cellSize;
 int rows = screenHeight / cellSize;
 
 int draw_grid()
 {
-    for (int row = 0; row < rows; row++)
+    for (int row = 0; row < rows - 25; row++)
     {
-        for (int column = 0; column < columns; column++)
+        for (int column = 0; column < columns - 10; column++)
         {
-            if (((column == 0) && (row == 0)) || ((column == columns -1) & (row == 0)) || ((row == rows -1) && (column == 0)) || ((row == rows -1) && (column == columns -1)))
-                DrawRectangle(column * cellSize, row * cellSize, cellSize - 1, cellSize - 1, BLACK);
-            else
-                DrawRectangle(column * cellSize, row * cellSize, cellSize - 1, cellSize - 1, WHITE);
+         DrawRectangle(25 + column * cellSize, 30+ row * cellSize, cellSize - 1, cellSize - 1, WHITE);
         }
     }
-    return 10;
 }
