@@ -1,1 +1,1 @@
-void draw_rule();
+int rule_state();

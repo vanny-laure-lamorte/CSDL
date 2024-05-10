@@ -19,7 +19,7 @@ int main()
     Color darkGreen = Color{20, 160, 133, 255};
     SetTargetFPS(60);
 
-    while (!WindowShouldClose())
+    while (!WindowShouldClose() && (gameOn != -1))
     {
         DrawFPS(10, 10);
         BeginDrawing();
@@ -34,7 +34,7 @@ int main()
         }
         else if (gameOn == 20) // <------------
         {
-            draw_rule(); // <------------
+            gameOn = rule_state(); // <------------
         }
         EndDrawing();
     }

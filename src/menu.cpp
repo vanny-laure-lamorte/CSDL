@@ -157,10 +157,7 @@ textWidth_copy = MeasureTextEx(font2, "Copyright | All rights reversed.", 11, 2)
         DrawTextEx(font1, "Exit",  (Vector2){float (GetScreenWidth() - textWidth_op3)/2, 390}, 30, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            EndDrawing();
-            unload_font_menu();
-            unload_img_menu();
-            CloseWindow();
+            return -1;
         }
     }
     else
