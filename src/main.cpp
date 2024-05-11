@@ -10,6 +10,7 @@
 void clear_cells();
 void create_cells();
 void update_grid();
+void paused_game();
 int surrounded_cells(int row, int col);
 
 int cellSize = 5;
@@ -17,6 +18,8 @@ int columns = 230;
 int rows = 135;
 
 bool grid[230][135];
+
+bool gamePaused = false; 
 
 // DrawRectangleLinesEx({1025, 750, 150, 35}, 5, RED);
 
@@ -146,7 +149,7 @@ int design_game()
         DrawTextEx(M_font2, "Start the automaton", (Vector2){45, 760}, 15, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 32;
+            paused_game();
         }
     }
     else
@@ -370,6 +373,12 @@ void toggle_cell_state()
     }
 }
 
+
+void paused_game() {
+    gamePaused = !gamePaused;
+
+}
+
 int main()
 {
     InitWindow(screenWidth, screenHeight, "Game of Life");
@@ -411,10 +420,19 @@ int main()
         }
         else if (gameOn == 10)
         {
+
+            if (!gamePaused) {
             DrawTexture(M_background, 0, 0, WHITE);
             design_game();
             draw_grid();
             update_grid();
+            }
+            else {
+            DrawTexture(M_background, 0, 0, WHITE);
+            design_game();
+            draw_grid();
+
+            }
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
 
