@@ -19,7 +19,7 @@ int rows = 135;
 
 bool grid[230][135];
 
-bool gamePaused = false; 
+bool gamePaused = false;
 
 // DrawRectangleLinesEx({1025, 750, 150, 35}, 5, RED);
 
@@ -150,6 +150,7 @@ int design_game()
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             paused_game();
+            draw_cells = false;
         }
     }
     else
@@ -200,6 +201,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
+            gamePaused = true;
             draw_cells = !draw_cells;
         }
     }
@@ -369,14 +371,13 @@ void toggle_cell_state()
     int row = (G_mousePoint.y - 30) / cellSize;
     if (column >= 0 && column < columns && row >= 0 && row < rows)
     {
-        grid[column][row] = !grid[column][row];
+        grid[column][row] = true;
     }
 }
 
-
-void paused_game() {
+void paused_game()
+{
     gamePaused = !gamePaused;
-
 }
 
 int main()
@@ -421,17 +422,18 @@ int main()
         else if (gameOn == 10)
         {
 
-            if (!gamePaused) {
-            DrawTexture(M_background, 0, 0, WHITE);
-            design_game();
-            draw_grid();
-            update_grid();
+            if (!gamePaused)
+            {
+                DrawTexture(M_background, 0, 0, WHITE);
+                design_game();
+                draw_grid();
+                update_grid();
             }
-            else {
-            DrawTexture(M_background, 0, 0, WHITE);
-            design_game();
-            draw_grid();
-
+            else
+            {
+                DrawTexture(M_background, 0, 0, WHITE);
+                design_game();
+                draw_grid();
             }
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
