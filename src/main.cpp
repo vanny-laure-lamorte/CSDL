@@ -8,8 +8,9 @@
 #include "../include/rule.hpp"
 
 void clear_cells();
-void create_cells(); 
-void start_cells();
+void create_cells();
+void update_grid();
+int surrounded_cells(int row, int col);
 
 int cellSize = 5;
 int columns = 230;
@@ -265,23 +266,101 @@ void create_cells()
     }
 }
 
-void start_cells()
+void update_grid()
 {
+
+    bool new_grid[columns][rows];
+
     for (int row = 0; row < rows; row++)
     {
         for (int column = 0; column < columns; column++)
         {
-            grid[column][row] = rand() % 2 == 0;
+            new_grid[column][row] = grid[column][row];
+        }
+    }
+
+    for (int row = 0; row < rows; row++)
+    {
+
+        for (int column = 0; column < columns; column++)
+        {
+
+            int neighbors = surrounded_cells(row, column);
+
+            if (grid[column][row])
+            {
+                // 2 or 3 neighbors : cell is alive
+                if (neighbors == 2 || neighbors == 3)
+                {
+                    new_grid[column][row] = true;
+                }
+                // More then 3 neighbors or less than 2 neighboors : Death of cells
+                else
+                {
+                    new_grid[column][row] = false;
+                }
+            }
+
+            else
+            {
+                // if 3 neighbors: birth cell
+                if (neighbors == 3)
+                {
+                    new_grid[column][row] = true;
+                }
+                else
+                {
+                    new_grid[column][row] = false;
+                }
+            }
+        }
+    }
+
+    for (int row = 0; row < rows; row++)
+    {
+        for (int column = 0; column < columns; column++)
+        {
+            grid[column][row] = new_grid[column][row];
         }
     }
 }
 
+int surrounded_cells(int row, int col)
+{
+    int count = 0;
+
+    for (int i = -1; i <= 1; i++)
+    {
+        for (int j = -1; j <= 1; j++)
+        {
+
+            // Ignore current cell
+            if (i == 0 && j == 0)
+            {
+                continue;
+            }
+
+            int neighborRow = row + i;
+            int neighborCol = col + j;
+
+            if (neighborRow >= 0 && neighborRow < rows && neighborCol >= 0 && neighborCol < columns)
+            {
+                // Add if cell alive
+                if (grid[neighborCol][neighborRow])
+                {
+                    count++;
+                }
+            }
+        }
+    }
+
+    return count;
+}
 
 int main()
 {
     InitWindow(screenWidth, screenHeight, "Game of Life");
     SetTargetFPS(60);
-
 
     create_cells();
 
@@ -308,7 +387,6 @@ int main()
     // Color
     Color darkGreen = Color{20, 160, 133, 255};
     SetTargetFPS(60);
-   
 
     while (!WindowShouldClose() && (gameOn != -1))
     {
@@ -324,6 +402,7 @@ int main()
             DrawTexture(M_background, 0, 0, WHITE);
             design_game();
             draw_grid();
+            update_grid();
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
         }
