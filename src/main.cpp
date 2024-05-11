@@ -6,7 +6,9 @@
 #include "../include/menu.hpp"
 #include "../include/rule.hpp"
 
-            // DrawRectangleLinesEx({760, 715, 165, 35}, 5, RED);
+// DrawRectangleLinesEx({1150, 2, 25, 25}, 5, RED);
+
+
 
 
 void clear_cells();
@@ -35,10 +37,13 @@ Font M_font2;
 
 //**** IMAGES
 Image rect_op1;
-
+Image next_g;
+Image close_m;
 
 Texture2D M_background;
 Texture2D t_rect_op1;
+Texture2D t_next_g;
+Texture2D t_close_m;
 
 
 //**** RECT
@@ -52,6 +57,7 @@ Rectangle rect_btn_hover7;
 Rectangle rect_btn_hover8;
 Rectangle rect_btn_hover9;
 Rectangle rect_btn_hover10;
+Rectangle rect_close;
 
 //**** DRAW CELLS
 bool draw_cells = false;
@@ -60,11 +66,20 @@ bool draw_cells = false;
 void load_img_game()
 {
     rect_op1 = LoadImage("assets/img/btn.png");
-
     ImageResize(&rect_op1, 165, 85);
+    next_g = LoadImage("assets/img/generation.png");
+    ImageResize(&next_g, 20, 20);
+
+    close_m = LoadImage("assets/img/close.png");
+    ImageResize(&close_m, 25, 25);
+
 
     M_background = LoadTexture("assets/img/background3.png");
     t_rect_op1 = LoadTextureFromImage(rect_op1);
+    t_next_g = LoadTextureFromImage(next_g);
+    t_close_m = LoadTextureFromImage(close_m);
+
+
 
 }
 
@@ -72,9 +87,12 @@ void load_img_game()
 void unload_img_game()
 {
     UnloadImage(rect_op1);
+    UnloadImage(next_g);
 
     UnloadTexture(M_background);
     UnloadTexture(t_rect_op1);
+    UnloadTexture(t_next_g);
+    UnloadTexture(t_close_m);
 
 }
 
@@ -96,9 +114,29 @@ void unload_font_game()
 int design_game()
 {
 
+    DrawTexture(t_next_g, 600, 1, WHITE);
+
+
+
     DrawRectangle(25, 30, 1150, 675, LIGHTGRAY);
 
     G_mousePoint = GetMousePosition();
+
+      // Back to menu
+    if (CheckCollisionPointRec(G_mousePoint, rect_close))
+    {
+        DrawTexture(t_close_m, 1151, 3, WHITE);
+
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            return 0;
+        }
+    }
+    else
+    {
+        DrawTexture(t_close_m, 1150, 2, WHITE);
+
+    }
 
     // 1. Random
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover1))
@@ -451,6 +489,8 @@ int main()
     rect_btn_hover9 = {1025, 715, 165, 35};
     rect_btn_hover10 = {1025, 750, 165, 35};
 
+    rect_close = {1150, 2, 25, 25};
+
 
     // Menu
     load_img_menu();
@@ -494,6 +534,7 @@ int main()
             }
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
+
 
 
             if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && draw_cells)
