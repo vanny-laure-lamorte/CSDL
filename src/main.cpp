@@ -2,10 +2,12 @@
 #include <iostream>
 
 // Load files
-#include "../include/game.hpp"
 #include "../include/screen.hpp"
 #include "../include/menu.hpp"
 #include "../include/rule.hpp"
+
+            // DrawRectangleLinesEx({760, 715, 165, 35}, 5, RED);
+
 
 void clear_cells();
 void create_cells();
@@ -21,7 +23,6 @@ bool grid[230][135];
 
 bool gamePaused = false;
 
-// DrawRectangleLinesEx({1025, 750, 150, 35}, 5, RED);
 
 int gameOn = 0;
 
@@ -34,19 +35,11 @@ Font M_font2;
 
 //**** IMAGES
 Image rect_op1;
-Image rect_op2;
-Image rect_op3;
-Image rect_op4;
-Image rect_op5;
-Image rect_op6;
+
 
 Texture2D M_background;
 Texture2D t_rect_op1;
-Texture2D t_rect_op2;
-Texture2D t_rect_op3;
-Texture2D t_rect_op4;
-Texture2D t_rect_op5;
-Texture2D t_rect_op6;
+
 
 //**** RECT
 Rectangle rect_btn_hover1;
@@ -55,6 +48,10 @@ Rectangle rect_btn_hover3;
 Rectangle rect_btn_hover4;
 Rectangle rect_btn_hover5;
 Rectangle rect_btn_hover6;
+Rectangle rect_btn_hover7;
+Rectangle rect_btn_hover8;
+Rectangle rect_btn_hover9;
+Rectangle rect_btn_hover10;
 
 //**** DRAW CELLS
 bool draw_cells = false;
@@ -63,44 +60,22 @@ bool draw_cells = false;
 void load_img_game()
 {
     rect_op1 = LoadImage("assets/img/btn.png");
-    rect_op2 = LoadImage("assets/img/btn.png");
-    rect_op3 = LoadImage("assets/img/btn.png");
-    rect_op4 = LoadImage("assets/img/btn.png");
-    rect_op5 = LoadImage("assets/img/btn.png");
-    rect_op6 = LoadImage("assets/img/btn.png");
+
     ImageResize(&rect_op1, 165, 85);
-    ImageResize(&rect_op2, 165, 85);
-    ImageResize(&rect_op3, 165, 85);
-    ImageResize(&rect_op4, 165, 85);
-    ImageResize(&rect_op5, 165, 85);
-    ImageResize(&rect_op6, 165, 85);
 
     M_background = LoadTexture("assets/img/background3.png");
     t_rect_op1 = LoadTextureFromImage(rect_op1);
-    t_rect_op2 = LoadTextureFromImage(rect_op2);
-    t_rect_op3 = LoadTextureFromImage(rect_op3);
-    t_rect_op4 = LoadTextureFromImage(rect_op4);
-    t_rect_op5 = LoadTextureFromImage(rect_op5);
-    t_rect_op6 = LoadTextureFromImage(rect_op6);
+
 }
 
 // UnLoad images
 void unload_img_game()
 {
     UnloadImage(rect_op1);
-    UnloadImage(rect_op2);
-    UnloadImage(rect_op3);
-    UnloadImage(rect_op4);
-    UnloadImage(rect_op5);
-    UnloadImage(rect_op6);
 
     UnloadTexture(M_background);
     UnloadTexture(t_rect_op1);
-    UnloadTexture(t_rect_op2);
-    UnloadTexture(t_rect_op3);
-    UnloadTexture(t_rect_op4);
-    UnloadTexture(t_rect_op5);
-    UnloadTexture(t_rect_op6);
+
 }
 
 // Load font
@@ -125,11 +100,11 @@ int design_game()
 
     G_mousePoint = GetMousePosition();
 
-    // Button Next generation
+    // 1. Random
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover1))
     {
         DrawTexture(t_rect_op1, 27, 692, WHITE);
-        DrawTextEx(M_font2, "Next generation", (Vector2){50, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Random", (Vector2){50, 725}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -139,14 +114,14 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 25, 690, WHITE);
-        DrawTextEx(M_font2, "Next generation", (Vector2){50, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Random", (Vector2){50, 725}, 15, 2, DARKGRAY);
     }
 
-    // Button Start the automaton
+    // 2. Clear
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover2))
     {
-        DrawTexture(t_rect_op2, 27, 727, WHITE);
-        DrawTextEx(M_font2, "Start the automaton", (Vector2){45, 760}, 15, 2, DARKGRAY);
+        DrawTexture(t_rect_op1, 27, 727, WHITE);
+        DrawTextEx(M_font2, "Clear", (Vector2){45, 760}, 15, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             paused_game();
@@ -155,15 +130,51 @@ int design_game()
     }
     else
     {
-        DrawTexture(t_rect_op2, 25, 725, WHITE);
-        DrawTextEx(M_font2, "Start the automaton", (Vector2){35, 760}, 15, 2, DARKGRAY);
+        DrawTexture(t_rect_op1, 25, 725, WHITE);
+        DrawTextEx(M_font2, "Clear", (Vector2){35, 760}, 15, 2, DARKGRAY);
     }
 
-    // Button Blankk Grid
+    
+    // 3. Draw
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover3))
     {
-        DrawTexture(t_rect_op3, 512, 692, WHITE);
-        DrawTextEx(M_font2, "Blank grid", (Vector2){555, 725}, 15, 2, DARKGRAY);
+        DrawTexture(t_rect_op1, 277, 692, WHITE);
+        DrawTextEx(M_font2, "Draw", (Vector2){300, 725}, 15, 2, DARKGRAY);
+
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            return 31;
+        }
+    }
+    else
+    {
+        DrawTexture(t_rect_op1, 275, 690, WHITE);
+        DrawTextEx(M_font2, "Draw", (Vector2){300, 725}, 15, 2, DARKGRAY);
+    }
+
+
+    // 4. Earase
+    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover4))
+    {
+        DrawTexture(t_rect_op1, 277, 727, WHITE);
+        DrawTextEx(M_font2, "Erase", (Vector2){300, 760}, 15, 2, DARKGRAY);
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            paused_game();
+            draw_cells = false;
+        }
+    }
+    else
+    {
+        DrawTexture(t_rect_op1, 275, 725, WHITE);
+        DrawTextEx(M_font2, "Earase", (Vector2){300, 760}, 15, 2, DARKGRAY);
+    }
+
+    // 5. Stop
+    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover5))
+    {
+        DrawTexture(t_rect_op1, 512, 692, WHITE);
+        DrawTextEx(M_font2, "Stop", (Vector2){555, 725}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -172,15 +183,15 @@ int design_game()
     }
     else
     {
-        DrawTexture(t_rect_op3, 510, 690, WHITE);
-        DrawTextEx(M_font2, "Blank grid", (Vector2){555, 725}, 15, 2, DARKGRAY);
+        DrawTexture(t_rect_op1, 510, 690, WHITE);
+        DrawTextEx(M_font2, "Stop", (Vector2){555, 725}, 15, 2, DARKGRAY);
     }
 
-    // Button Randon path
-    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover4))
+    // 6. Play
+    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover6))
     {
-        DrawTexture(t_rect_op4, 512, 727, WHITE);
-        DrawTextEx(M_font2, "Random path", (Vector2){545, 760}, 15, 2, DARKGRAY);
+        DrawTexture(t_rect_op1, 512, 727, WHITE);
+        DrawTextEx(M_font2, "Play", (Vector2){545, 760}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -189,15 +200,50 @@ int design_game()
     }
     else
     {
-        DrawTexture(t_rect_op4, 510, 725, WHITE);
-        DrawTextEx(M_font2, "Random path", (Vector2){545, 760}, 15, 2, DARKGRAY);
+        DrawTexture(t_rect_op1, 510, 725, WHITE);
+        DrawTextEx(M_font2, "Play", (Vector2){545, 760}, 15, 2, DARKGRAY);
     }
 
-    // Button Game of Life
-    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover5))
+    // 7. Dowload
+    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover7))
     {
-        DrawTexture(t_rect_op5, 1027, 692, WHITE);
-        DrawTextEx(M_font2, "Game of Life", (Vector2){1065, 725}, 15, 2, DARKGRAY);
+        DrawTexture(t_rect_op1, 762, 692, WHITE);
+        DrawTextEx(M_font2, "Dowload", (Vector2){805, 725}, 15, 2, DARKGRAY);
+
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            clear_cells();
+        }
+    }
+    else
+    {
+        DrawTexture(t_rect_op1, 760, 690, WHITE);
+        DrawTextEx(M_font2, "Dowload", (Vector2){805, 725}, 15, 2, DARKGRAY);
+    }
+
+    // 8. Load
+    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover8))
+    {
+        DrawTexture(t_rect_op1, 762, 727, WHITE);
+        DrawTextEx(M_font2, "Load", (Vector2){805, 760}, 15, 2, DARKGRAY);
+
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            create_cells();
+        }
+    }
+    else
+    {
+        DrawTexture(t_rect_op1, 760, 725, WHITE);
+        DrawTextEx(M_font2, "Load", (Vector2){805, 760}, 15, 2, DARKGRAY);
+    }
+ 
+
+  // 9. Speed
+    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover9))
+    {
+        DrawTexture(t_rect_op1, 1017, 692, WHITE);
+        DrawTextEx(M_font2, "Speed", (Vector2){1065, 725}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -207,14 +253,14 @@ int design_game()
     }
     else
     {
-        DrawTexture(t_rect_op5, 1025, 690, WHITE);
-        DrawTextEx(M_font2, "Game of Life", (Vector2){1065, 725}, 15, 2, DARKGRAY);
+        DrawTexture(t_rect_op1, 1015, 690, WHITE);
+        DrawTextEx(M_font2, "Speed", (Vector2){1065, 725}, 15, 2, DARKGRAY);
     }
 
-    // Button Quit
-    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover6))
+    // 10. Quit
+    if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover10))
     {
-        DrawTexture(t_rect_op6, 1027, 727, WHITE);
+        DrawTexture(t_rect_op1, 1017, 727, WHITE);
         DrawTextEx(M_font2, " Quit", (Vector2){1100, 760}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
@@ -224,9 +270,11 @@ int design_game()
     }
     else
     {
-        DrawTexture(t_rect_op6, 1025, 725, WHITE);
+        DrawTexture(t_rect_op1, 1015, 725, WHITE);
         DrawTextEx(M_font2, " Quit", (Vector2){1100, 760}, 15, 2, DARKGRAY);
     }
+
+
 
     return 37;
 }
@@ -388,12 +436,21 @@ int main()
     create_cells();
 
     // Update button rectangles
-    rect_btn_hover1 = {25, 715, 150, 35};
-    rect_btn_hover2 = {25, 750, 150, 85};
-    rect_btn_hover3 = {510, 715, 150, 35};
-    rect_btn_hover4 = {510, 750, 150, 35};
-    rect_btn_hover5 = {1025, 715, 150, 35};
-    rect_btn_hover6 = {1025, 750, 150, 85};
+    rect_btn_hover1 = {25, 715, 165, 35};
+    rect_btn_hover2 = {25, 750, 165, 35};
+
+    rect_btn_hover3 = {275, 715, 165, 35};
+    rect_btn_hover4 = {275, 750, 165, 35};
+
+    rect_btn_hover5 = {510, 715, 165, 35};
+    rect_btn_hover6 = {510, 750, 165, 35};
+
+    rect_btn_hover7 = {760, 715, 165, 35};
+    rect_btn_hover8 = {760, 750, 165, 35};
+
+    rect_btn_hover9 = {1025, 715, 165, 35};
+    rect_btn_hover10 = {1025, 750, 165, 35};
+
 
     // Menu
     load_img_menu();
@@ -437,6 +494,7 @@ int main()
             }
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
+
 
             if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && draw_cells)
             {
