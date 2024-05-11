@@ -143,7 +143,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 31;
+            create_cells();
         }
     }
     else
@@ -159,8 +159,7 @@ int design_game()
         DrawTextEx(M_font2, "Clear", (Vector2){90, 760}, 15, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            paused_game();
-            draw_cells = false;
+            clear_cells();
         }
     }
     else
@@ -178,7 +177,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 31;
+            return 10;
         }
     }
     else
@@ -187,16 +186,14 @@ int design_game()
         DrawTextEx(M_font2, "Draw", (Vector2){350, 725}, 15, 2, DARKGRAY);
     }
 
-
-    // 4. Earase
+    // 4. Erase
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover4))
     {
         DrawTexture(t_rect_op1, 277, 727, WHITE);
         DrawTextEx(M_font2, "Erase", (Vector2){350, 760}, 15, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            paused_game();
-            draw_cells = false;
+            return 10;
         }
     }
     else
@@ -213,7 +210,8 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            clear_cells();
+            gamePaused = true;
+            draw_cells = false;
         }
     }
     else
@@ -230,7 +228,8 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            create_cells();
+            gamePaused = false;
+
         }
     }
     else
@@ -247,7 +246,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            clear_cells();
+            return 10;
         }
     }
     else
@@ -264,7 +263,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            create_cells();
+            return 10;
         }
     }
     else
@@ -292,7 +291,7 @@ int design_game()
         DrawTextEx(M_font2, "Speed", (Vector2){1075, 725}, 15, 2, DARKGRAY);
     }
 
-    // 10. Quit
+    // 10. Choose pattern
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover10))
     {
         DrawTexture(t_rect_op1, 1017, 727, WHITE);
@@ -300,7 +299,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 36;
+            return 20;
         }
     }
     else
@@ -308,9 +307,6 @@ int design_game()
         DrawTexture(t_rect_op1, 1015, 725, WHITE);
         DrawTextEx(M_font2, "Choose pattern", (Vector2){1040, 760}, 15, 2, DARKGRAY);
     }
-
-
-
     return 10;
 }
 
@@ -470,7 +466,7 @@ int main()
 
     create_cells();
 
-    // Update button rectangles
+    // Update button rect
     rect_btn_hover1 = {25, 715, 165, 35};
     rect_btn_hover2 = {25, 750, 165, 35};
     rect_btn_hover3 = {275, 715, 165, 35};
@@ -526,9 +522,6 @@ int main()
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
             // DrawRectangleLinesEx({1150, 2, 25, 25}, 5, RED);
-
-
-
 
             if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && draw_cells)
             {
