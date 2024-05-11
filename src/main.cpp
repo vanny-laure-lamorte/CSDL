@@ -41,6 +41,7 @@ Rectangle rect_btn_hover4;
 Rectangle rect_btn_hover5;
 Rectangle rect_btn_hover6;
 
+// Load images
 void load_img_game()
 {
     rect_op1 = LoadImage("assets/img/btn.png");
@@ -56,7 +57,6 @@ void load_img_game()
     ImageResize(&rect_op5, 165, 85);
     ImageResize(&rect_op6, 165, 85);
 
-    // Images Texture
     M_background = LoadTexture("assets/img/background3.png");
     t_rect_op1 = LoadTextureFromImage(rect_op1);
     t_rect_op2 = LoadTextureFromImage(rect_op2);
@@ -66,6 +66,7 @@ void load_img_game()
     t_rect_op6 = LoadTextureFromImage(rect_op6);
 }
 
+// UnLoad images
 void unload_img_game()
 {
     UnloadImage(rect_op1);
@@ -84,18 +85,21 @@ void unload_img_game()
     UnloadTexture(t_rect_op6);
 }
 
+// Load font
 void load_font_game()
 {
     M_font1 = LoadFontEx("assets/font/Television.ttf", 400, 0, 252);
     M_font2 = LoadFontEx("assets/font/Anton-Regular.ttf", 300, 0, 252);
 }
 
+// Unload font
 void unload_font_game()
 {
     UnloadFont(M_font1);
     UnloadFont(M_font2);
 }
 
+// Design game
 int design_game()
 {
 
@@ -103,7 +107,7 @@ int design_game()
 
     G_mousePoint = GetMousePosition();
 
-    // Button
+    // Button Next generation
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover1))
     {
         DrawTexture(t_rect_op1, 27, 692, WHITE);
@@ -120,7 +124,7 @@ int design_game()
         DrawTextEx(M_font2, "Next generation", (Vector2){50, 725}, 15, 2, DARKGRAY);
     }
 
-    // Button
+    // Button Start the automaton
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover2))
     {
         DrawTexture(t_rect_op2, 27, 727, WHITE);
@@ -136,7 +140,7 @@ int design_game()
         DrawTextEx(M_font2, "Start the automaton", (Vector2){35, 760}, 15, 2, DARKGRAY);
     }
 
-    // Button
+    // Button Blankk Grid
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover3))
     {
         DrawTexture(t_rect_op3, 512, 692, WHITE);
@@ -153,8 +157,7 @@ int design_game()
         DrawTextEx(M_font2, "Blank grid", (Vector2){555, 725}, 15, 2, DARKGRAY);
     }
 
-    // Button
-
+    // Button Randon path
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover4))
     {
         DrawTexture(t_rect_op4, 512, 727, WHITE);
@@ -171,8 +174,7 @@ int design_game()
         DrawTextEx(M_font2, "Random path", (Vector2){545, 760}, 15, 2, DARKGRAY);
     }
 
-    // Button
-
+    // Button Game of Life
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover5))
     {
         DrawTexture(t_rect_op5, 1027, 692, WHITE);
@@ -189,8 +191,7 @@ int design_game()
         DrawTextEx(M_font2, "Game of Life", (Vector2){1065, 725}, 15, 2, DARKGRAY);
     }
 
-    // Button
-
+    // Button Quit
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover6))
     {
         DrawTexture(t_rect_op6, 1027, 727, WHITE);
