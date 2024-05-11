@@ -5,7 +5,24 @@
 using namespace std;
 
 //**** IMAGES
+Image square1;
+Image square2;
+Image square3;
+Image square4;
+Image square5;
+Image square6;
+Image square7;
+Image square8;
 Texture2D R_background;
+Texture2D t_square1;
+Texture2D t_square2;
+Texture2D t_square3;
+Texture2D t_square4;
+Texture2D t_square5;
+Texture2D t_square6;
+Texture2D t_square7;
+Texture2D t_square8;
+
 
 //**** FONT
 Font R_font1;
@@ -20,14 +37,48 @@ Rectangle rect_menu;
 // Images
 void load_img_rule()
 {
+    square1 = LoadImage("assets/img/square1.png");
+    square2 = LoadImage("assets/img/square2.png");
+    square3 = LoadImage("assets/img/square3.png");
+    square4 = LoadImage("assets/img/square4.png");
+    square5 = LoadImage("assets/img/square5.png");
+    square6 = LoadImage("assets/img/square6.png");
+    square7 = LoadImage("assets/img/square7.png");
+    square8 = LoadImage("assets/img/square8.png");
+
     // Images Texture
     R_background = LoadTexture("assets/img/background4.png");
+    t_square1 = LoadTextureFromImage(square1);
+    t_square2 = LoadTextureFromImage(square2);
+    t_square3 = LoadTextureFromImage(square3);
+    t_square4 = LoadTextureFromImage(square4);
+    t_square5 = LoadTextureFromImage(square5);
+    t_square6 = LoadTextureFromImage(square6);
+    t_square7 = LoadTextureFromImage(square7);
+    t_square8 = LoadTextureFromImage(square8);
 }
 
 void unload_img_rule()
 {
 
+    UnloadImage(square1);
+    UnloadImage(square2);
+    UnloadImage(square3);
+    UnloadImage(square4);
+    UnloadImage(square5);
+    UnloadImage(square6);
+    UnloadImage(square7);
+    UnloadImage(square8);
+
     UnloadTexture(R_background);
+    UnloadTexture(t_square1);
+    UnloadTexture(t_square2);
+    UnloadTexture(t_square3);
+    UnloadTexture(t_square4);
+    UnloadTexture(t_square5);
+    UnloadTexture(t_square6);
+    UnloadTexture(t_square7);
+    UnloadTexture(t_square8);
 }
 
 // Font
@@ -66,15 +117,37 @@ int draw_rule()
 
     // Rules
     DrawTextEx(R_font1, "Rules", (Vector2){560, 120}, 40, 2, WHITE);
-    DrawTextEx(R_font2, "For a space that is populated", (Vector2){460, 200}, 20, 1, LIGHTGRAY);
-    DrawTextEx(R_font2, "Each cell with one or no neighbors dies,", (Vector2){450, 260}, 15, 1, LIGHTGRAY);
-    DrawTextEx(R_font2, " as if by solitude.", (Vector2){450, 290}, 15, 1, LIGHTGRAY);
-    DrawTextEx(R_font2, "Each cell with four or more neighbors dies, as if by", (Vector2){450, 350}, 15, 1, LIGHTGRAY);
-    DrawTextEx(R_font2, "overpopulation.", (Vector2){450, 380}, 15, 1, LIGHTGRAY);
-    DrawTextEx(R_font2, "Each cell with two or three neighbors survives.", (Vector2){450, 440}, 15, 1, LIGHTGRAY);
+    DrawTextEx(R_font2, "For a space that is populated", (Vector2){500, 200}, 20, 1, LIGHTGRAY);
+    DrawTextEx(R_font2, "- Each cell with one or no neighbors dies,", (Vector2){500, 270}, 15, 1, LIGHTGRAY);
+    DrawTextEx(R_font2, " as if by solitude.", (Vector2){500, 290}, 15, 1, LIGHTGRAY);
 
-    DrawTextEx(R_font2, "For a space that is empty or unpopulated", (Vector2){460, 500}, 20, 1, LIGHTGRAY);
-    DrawTextEx(R_font2, "Each cell with three neighbors becomes populated.", (Vector2){450, 560}, 15, 1, LIGHTGRAY);
+    DrawTextEx(R_font2, "- Each cell with four or more neighbors dies, as if by", (Vector2){500, 350}, 15, 1, LIGHTGRAY);
+    DrawTextEx(R_font2, "overpopulation.", (Vector2){500, 370}, 15, 1, LIGHTGRAY);
+    DrawTextEx(R_font2, " - Each cell with two or three neighbors survives.", (Vector2){500, 440}, 15, 1, LIGHTGRAY);
+
+    DrawTextEx(R_font2, "For a space that is empty or unpopulated", (Vector2){500, 520}, 20, 1, LIGHTGRAY);
+    DrawTextEx(R_font2, "- Each cell with three neighbors becomes populated.", (Vector2){500, 590}, 15, 1, LIGHTGRAY);
+
+    // Images Rules
+    DrawTexture(t_square1, 900, 250, WHITE);
+    DrawTexture(t_square2, 1050, 250, WHITE);
+
+    DrawTexture(t_square3, 900, 340, WHITE);
+    DrawTexture(t_square4, 1050, 340, WHITE);
+
+    DrawTexture(t_square5, 900, 430, WHITE);
+    DrawTexture(t_square6, 1050, 430, WHITE);
+
+    DrawTexture(t_square7, 900, 555, WHITE);
+    DrawTexture(t_square8, 1050, 555, WHITE);
+
+
+
+
+
+
+
+
 
     // back to menu
 
