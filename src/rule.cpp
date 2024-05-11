@@ -142,13 +142,6 @@ int draw_rule()
     DrawTexture(t_square8, 1050, 555, WHITE);
 
 
-
-
-
-
-
-
-
     // back to menu
 
     rect_menu = {1070, 25, 100, 30};
