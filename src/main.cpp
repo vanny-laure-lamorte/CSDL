@@ -1,10 +1,21 @@
 #include <raylib.h>
+#include <iostream>
 
 // Load files
 #include "../include/game.hpp"
 #include "../include/screen.hpp"
 #include "../include/menu.hpp"
 #include "../include/rule.hpp"
+
+void clear_cells();
+void create_cells(); 
+void start_cells();
+
+int cellSize = 5;
+int columns = 230;
+int rows = 135;
+
+bool grid[230][135];
 
 // DrawRectangleLinesEx({1025, 750, 150, 35}, 5, RED);
 
@@ -148,7 +159,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 33;
+            clear_cells();
         }
     }
     else
@@ -165,7 +176,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 34;
+            create_cells();
         }
     }
     else
@@ -211,10 +222,68 @@ int design_game()
     return 37;
 }
 
+int draw_grid()
+{
+    for (int row = 0; row < rows; row++)
+    {
+
+        for (int column = 0; column < columns; column++)
+        {
+            if (grid[column][row])
+            {
+                DrawRectangle(25 + column * cellSize, 30 + row * cellSize, cellSize - 1, cellSize - 1, BLACK);
+            }
+            else
+            {
+                DrawRectangle(25 + column * cellSize, 30 + row * cellSize, cellSize - 1, cellSize - 1, WHITE);
+            }
+        }
+    }
+
+    return 0;
+}
+
+void clear_cells()
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            grid[j][i] = false;
+        }
+    }
+}
+
+void create_cells()
+{
+    for (int row = 0; row < rows; row++)
+    {
+        for (int column = 0; column < columns; column++)
+        {
+            grid[column][row] = rand() % 2 == 0;
+        }
+    }
+}
+
+void start_cells()
+{
+    for (int row = 0; row < rows; row++)
+    {
+        for (int column = 0; column < columns; column++)
+        {
+            grid[column][row] = rand() % 2 == 0;
+        }
+    }
+}
+
+
 int main()
 {
     InitWindow(screenWidth, screenHeight, "Game of Life");
     SetTargetFPS(60);
+
+
+    create_cells();
 
     // Update button rectangles
     rect_btn_hover1 = {25, 715, 150, 35};
@@ -239,6 +308,7 @@ int main()
     // Color
     Color darkGreen = Color{20, 160, 133, 255};
     SetTargetFPS(60);
+   
 
     while (!WindowShouldClose() && (gameOn != -1))
     {
