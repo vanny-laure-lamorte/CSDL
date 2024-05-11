@@ -139,7 +139,7 @@ int design_game()
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover1))
     {
         DrawTexture(t_rect_op1, 27, 692, WHITE);
-        DrawTextEx(M_font2, "Random", (Vector2){50, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Random", (Vector2){80, 725}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -149,14 +149,14 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 25, 690, WHITE);
-        DrawTextEx(M_font2, "Random", (Vector2){50, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Random", (Vector2){80, 725}, 15, 2, DARKGRAY);
     }
 
     // 2. Clear
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover2))
     {
         DrawTexture(t_rect_op1, 27, 727, WHITE);
-        DrawTextEx(M_font2, "Clear", (Vector2){45, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Clear", (Vector2){90, 760}, 15, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             paused_game();
@@ -166,7 +166,7 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 25, 725, WHITE);
-        DrawTextEx(M_font2, "Clear", (Vector2){35, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Clear", (Vector2){90, 760}, 15, 2, DARKGRAY);
     }
 
     
@@ -174,7 +174,7 @@ int design_game()
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover3))
     {
         DrawTexture(t_rect_op1, 277, 692, WHITE);
-        DrawTextEx(M_font2, "Draw", (Vector2){300, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Draw", (Vector2){350, 725}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -184,7 +184,7 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 275, 690, WHITE);
-        DrawTextEx(M_font2, "Draw", (Vector2){300, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Draw", (Vector2){350, 725}, 15, 2, DARKGRAY);
     }
 
 
@@ -192,7 +192,7 @@ int design_game()
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover4))
     {
         DrawTexture(t_rect_op1, 277, 727, WHITE);
-        DrawTextEx(M_font2, "Erase", (Vector2){300, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Erase", (Vector2){350, 760}, 15, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             paused_game();
@@ -202,14 +202,14 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 275, 725, WHITE);
-        DrawTextEx(M_font2, "Earase", (Vector2){300, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Erase", (Vector2){350, 760}, 15, 2, DARKGRAY);
     }
 
     // 5. Stop
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover5))
     {
         DrawTexture(t_rect_op1, 512, 692, WHITE);
-        DrawTextEx(M_font2, "Stop", (Vector2){555, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Pause", (Vector2){585, 725}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -219,14 +219,14 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 510, 690, WHITE);
-        DrawTextEx(M_font2, "Stop", (Vector2){555, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Pause", (Vector2){585, 725}, 15, 2, DARKGRAY);
     }
 
     // 6. Play
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover6))
     {
         DrawTexture(t_rect_op1, 512, 727, WHITE);
-        DrawTextEx(M_font2, "Play", (Vector2){545, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Play", (Vector2){585, 760}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -236,14 +236,14 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 510, 725, WHITE);
-        DrawTextEx(M_font2, "Play", (Vector2){545, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Play", (Vector2){585, 760}, 15, 2, DARKGRAY);
     }
 
     // 7. Dowload
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover7))
     {
         DrawTexture(t_rect_op1, 762, 692, WHITE);
-        DrawTextEx(M_font2, "Dowload", (Vector2){805, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Load", (Vector2){825, 725}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -253,14 +253,14 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 760, 690, WHITE);
-        DrawTextEx(M_font2, "Dowload", (Vector2){805, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Load", (Vector2){825, 725}, 15, 2, DARKGRAY);
     }
 
     // 8. Load
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover8))
     {
         DrawTexture(t_rect_op1, 762, 727, WHITE);
-        DrawTextEx(M_font2, "Load", (Vector2){805, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Saved", (Vector2){825, 760}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -270,7 +270,7 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 760, 725, WHITE);
-        DrawTextEx(M_font2, "Load", (Vector2){805, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Saved", (Vector2){825, 760}, 15, 2, DARKGRAY);
     }
  
 
@@ -278,7 +278,7 @@ int design_game()
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover9))
     {
         DrawTexture(t_rect_op1, 1017, 692, WHITE);
-        DrawTextEx(M_font2, "Speed", (Vector2){1065, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Speed", (Vector2){1075, 725}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -289,14 +289,14 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 1015, 690, WHITE);
-        DrawTextEx(M_font2, "Speed", (Vector2){1065, 725}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Speed", (Vector2){1075, 725}, 15, 2, DARKGRAY);
     }
 
     // 10. Quit
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover10))
     {
         DrawTexture(t_rect_op1, 1017, 727, WHITE);
-        DrawTextEx(M_font2, " Quit", (Vector2){1100, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Choose pattern", (Vector2){1040, 760}, 15, 2, DARKGRAY);
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
@@ -306,7 +306,7 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 1015, 725, WHITE);
-        DrawTextEx(M_font2, " Quit", (Vector2){1100, 760}, 15, 2, DARKGRAY);
+        DrawTextEx(M_font2, "Choose pattern", (Vector2){1040, 760}, 15, 2, DARKGRAY);
     }
 
 
