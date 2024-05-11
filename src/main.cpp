@@ -53,6 +53,9 @@ Rectangle rect_btn_hover4;
 Rectangle rect_btn_hover5;
 Rectangle rect_btn_hover6;
 
+//**** DRAW CELLS
+bool draw_cells = false;
+
 // Load images
 void load_img_game()
 {
@@ -194,7 +197,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 35;
+            draw_cells = !draw_cells;
         }
     }
     else
@@ -357,6 +360,16 @@ int surrounded_cells(int row, int col)
     return count;
 }
 
+void toggle_cell_state()
+{
+    int column = (G_mousePoint.x - 25) / cellSize;
+    int row = (G_mousePoint.y - 30) / cellSize;
+    if (column >= 0 && column < columns && row >= 0 && row < rows)
+    {
+        grid[column][row] = !grid[column][row];
+    }
+}
+
 int main()
 {
     InitWindow(screenWidth, screenHeight, "Game of Life");
@@ -390,7 +403,6 @@ int main()
 
     while (!WindowShouldClose() && (gameOn != -1))
     {
-        DrawFPS(10, 10);
         BeginDrawing();
         ClearBackground(darkGreen);
         if (gameOn == 0)
@@ -405,6 +417,11 @@ int main()
             update_grid();
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
+
+            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && draw_cells)
+            {
+                toggle_cell_state();
+            }
         }
 
         else if (gameOn == 20)
