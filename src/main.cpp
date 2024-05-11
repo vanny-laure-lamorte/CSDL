@@ -6,10 +6,6 @@
 #include "../include/menu.hpp"
 #include "../include/rule.hpp"
 
-// DrawRectangleLinesEx({1150, 2, 25, 25}, 5, RED);
-
-
-
 
 void clear_cells();
 void create_cells();
@@ -79,8 +75,6 @@ void load_img_game()
     t_next_g = LoadTextureFromImage(next_g);
     t_close_m = LoadTextureFromImage(close_m);
 
-
-
 }
 
 // UnLoad images
@@ -114,15 +108,17 @@ void unload_font_game()
 int design_game()
 {
 
-    DrawTexture(t_next_g, 600, 1, WHITE);
+    DrawTextEx(M_font2, "Game of Life", (Vector2){550, 4}, 30, 2, DARKGRAY);
 
-
-
+// Logo next generation
+    DrawTexture(t_next_g, 25, 8, WHITE);
     DrawRectangle(25, 30, 1150, 675, LIGHTGRAY);
 
     G_mousePoint = GetMousePosition();
 
       // Back to menu
+
+    rect_close = {1150, 2, 25, 25};
     if (CheckCollisionPointRec(G_mousePoint, rect_close))
     {
         DrawTexture(t_close_m, 1151, 3, WHITE);
@@ -137,6 +133,7 @@ int design_game()
         DrawTexture(t_close_m, 1150, 2, WHITE);
 
     }
+
 
     // 1. Random
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover1))
@@ -314,7 +311,7 @@ int design_game()
 
 
 
-    return 37;
+    return 10;
 }
 
 int draw_grid()
@@ -476,20 +473,14 @@ int main()
     // Update button rectangles
     rect_btn_hover1 = {25, 715, 165, 35};
     rect_btn_hover2 = {25, 750, 165, 35};
-
     rect_btn_hover3 = {275, 715, 165, 35};
     rect_btn_hover4 = {275, 750, 165, 35};
-
     rect_btn_hover5 = {510, 715, 165, 35};
     rect_btn_hover6 = {510, 750, 165, 35};
-
     rect_btn_hover7 = {760, 715, 165, 35};
     rect_btn_hover8 = {760, 750, 165, 35};
-
     rect_btn_hover9 = {1025, 715, 165, 35};
-    rect_btn_hover10 = {1025, 750, 165, 35};
-
-    rect_close = {1150, 2, 25, 25};
+    rect_btn_hover10 = {1025, 750, 165, 35};   
 
 
     // Menu
@@ -522,18 +513,20 @@ int main()
             if (!gamePaused)
             {
                 DrawTexture(M_background, 0, 0, WHITE);
-                design_game();
+                gameOn = design_game();
                 draw_grid();
                 update_grid();
             }
             else
             {
                 DrawTexture(M_background, 0, 0, WHITE);
-                design_game();
+                gameOn = design_game();
                 draw_grid();
             }
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
+            // DrawRectangleLinesEx({1150, 2, 25, 25}, 5, RED);
+
 
 
 
