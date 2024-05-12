@@ -150,6 +150,7 @@ int design_game()
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             create_cells();
+            updateCount = 0; 
         }
     }
     else
@@ -287,7 +288,7 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            gamePaused = true;
+            gamePaused = true;          
             draw_cells = !draw_cells;
         }
     }
@@ -346,6 +347,8 @@ void clear_cells()
             grid[j][i] = false;
         }
     }
+    updateCount = 0; 
+    gamePaused = true;
 }
 
 void create_cells()
@@ -417,7 +420,6 @@ void update_grid()
         }
     }
     updateCount++;
-    printf("Nombre de mises à jour : %d\n", updateCount);
 }
 
 int surrounded_cells(int row, int col)
