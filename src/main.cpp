@@ -4,7 +4,7 @@
 // Load files
 #include "../include/screen.hpp"
 #include "../include/menu.hpp"
-#include "../include/rule.hpp"
+#include "../include/option.hpp"
 
 
 void clear_cells();
@@ -487,9 +487,9 @@ int main()
     load_img_game();
     load_font_game();
 
-    // Rule
-    load_font_rule();
-    load_img_rule();
+    // option
+    load_font_option();
+    load_img_option();
 
     // Color
     Color darkGreen = Color{20, 160, 133, 255};
@@ -531,7 +531,7 @@ int main()
 
         else if (gameOn == 20)
         {
-            gameOn = draw_rule();
+            gameOn = draw_option();
         }
         EndDrawing();
     }
@@ -544,9 +544,9 @@ int main()
     unload_img_game();
     unload_font_game();
 
-    // Rule
-    unload_font_rule();
-    unload_img_rule();
+    // option
+    unload_font_option();
+    unload_img_option();
 
     CloseWindow();
     return 0;

@@ -35,7 +35,7 @@ Vector2 R_mousePoint = {0.0f, 0.0f};
 Rectangle rect_menu;
 
 // Images
-void load_img_rule()
+void load_img_option()
 {
     square1 = LoadImage("assets/img/square1.png");
     square2 = LoadImage("assets/img/square2.png");
@@ -58,7 +58,7 @@ void load_img_rule()
     t_square8 = LoadTextureFromImage(square8);
 }
 
-void unload_img_rule()
+void unload_img_option()
 {
 
     UnloadImage(square1);
@@ -82,19 +82,19 @@ void unload_img_rule()
 }
 
 // Font
-void load_font_rule()
+void load_font_option()
 {
     R_font1 = LoadFontEx("assets/font/Television.ttf", 400, NULL, NULL);
     R_font2 = LoadFontEx("assets/font/Roboto-Black.ttf", 400, 0, 252);
 }
 
-void unload_font_rule()
+void unload_font_option()
 {
     UnloadFont(R_font1);
     UnloadFont(R_font2);
 }
 
-int draw_rule()
+int draw_option()
 {
 
     // Display images
@@ -128,7 +128,7 @@ int draw_rule()
     DrawTextEx(R_font2, "For a space that is empty or unpopulated", (Vector2){500, 520}, 20, 1, LIGHTGRAY);
     DrawTextEx(R_font2, "- Each cell with three neighbors becomes populated.", (Vector2){500, 590}, 15, 1, LIGHTGRAY);
 
-    // Images Rules
+    // Images Option
     DrawTexture(t_square1, 900, 250, WHITE);
     DrawTexture(t_square2, 1050, 250, WHITE);
 

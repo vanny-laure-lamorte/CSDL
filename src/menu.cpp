@@ -92,7 +92,7 @@ int menu()
     textWidth_title = MeasureTextEx(font1, "Game of Life", 50, 2).x;
     textWidth_name = textWidth_title = MeasureTextEx(font1, "by Hamza N., Lucas M.D.M & Vanny L.", 16, 2).x;
     textWidth_op1 = MeasureTextEx(font1, "Game of Life", 30, 2).x;
-    textWidth_op2 = MeasureTextEx(font1, "Rules & Origins", 30, 2).x;
+    textWidth_op2 = MeasureTextEx(font1, "Options", 30, 2).x;
     textWidth_op3 = MeasureTextEx(font1, "Exit", 30, 2).x;
     textWidth_copy = MeasureTextEx(font2, "Copyright | All rights reversed.", 11, 2).x;
 
@@ -112,7 +112,7 @@ int menu()
     DrawTextEx(font1, "by Hamza N., Lucas M.D.M & Vanny L.", (Vector2){float(GetScreenWidth() - textWidth_name) / 2, 100}, 16, 2, DARKGRAY);
 
     // Copyright
-    DrawTextEx(font2, "© ", (Vector2){380, 458}, 15, 2, DARKGRAY);
+    DrawTextEx(font2, "© ", (Vector2){490, 458}, 15, 2, DARKGRAY);
     DrawTextEx(font2, "Copyright | All rights reversed.", (Vector2){float(GetScreenWidth() - textWidth_copy) / 2, 460}, 11, 2, DARKGRAY);
 
     // Event
@@ -138,7 +138,7 @@ int menu()
     if (CheckCollisionPointRec(mousePoint, rect_btn2))
     {
         DrawTexture(t_btn2, (GetScreenWidth() - t_btn2.width) / 2, 153, WHITE);
-        DrawTextEx(font1, "Rules & Origins", (Vector2){float(GetScreenWidth() - textWidth_op2) / 2, 300}, 30, 2, DARKGRAY);
+        DrawTextEx(font1, "Options", (Vector2){float(GetScreenWidth() - textWidth_op2) / 2, 300}, 30, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             return 20;
@@ -147,7 +147,7 @@ int menu()
     else
     {
         DrawTexture(t_btn2, (GetScreenWidth() - t_btn2.width) / 2, 150, WHITE);
-        DrawTextEx(font1, "Rules & Origins", (Vector2){float(GetScreenWidth() - textWidth_op2) / 2, 300}, 30, 2, DARKGRAY);
+        DrawTextEx(font1, "Options", (Vector2){float(GetScreenWidth() - textWidth_op2) / 2, 300}, 30, 2, DARKGRAY);
     }
 
     // Button 3
