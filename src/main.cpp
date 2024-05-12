@@ -1,7 +1,7 @@
 #include <raylib.h>
 #include <iostream>
 #include <fstream>
-#include <thread> 
+#include <thread>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 using namespace std;
@@ -154,7 +154,7 @@ int design_game()
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             create_cells();
-            updateCount = 0; 
+            updateCount = 0;
         }
     }
     else
@@ -306,32 +306,41 @@ int design_game()
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
-               
-           if (speed == 1){
-            speed = 50;
 
-           }
+            if (speed == 1)
+            {
+                speed = 50;
+            }
 
-           else if (speed == 50){
-            speed = 100;
-           }
+            else if (speed == 50)
+            {
+                speed = 100;
+            }
 
-            else if (speed == 100){
-            speed = 500;
-           }
+            else if (speed == 100)
+            {
+                speed = 500;
+            }
 
-           else if (speed == 500) {
-            speed = 1;
-           }       
+            else if (speed == 500)
+            {
+                speed = 1;
+            }
         }
-
     }
     else
     {
         DrawTexture(t_rect_op1, 1015, 690, WHITE);
         DrawTextEx(M_font2, "Speed", (Vector2){1075, 725}, 15, 2, DARKGRAY);
     }
-
+    if (speed == 1)
+        DrawTextEx(M_font2, "x500", (Vector2){1125, 725}, 15, 2, DARKGRAY);
+    else if (speed == 50)
+        DrawTextEx(M_font2, "x50", (Vector2){1125, 725}, 15, 2, DARKGRAY);
+    else if (speed == 100)
+        DrawTextEx(M_font2, "x5", (Vector2){1125, 725}, 15, 2, DARKGRAY);
+    else if (speed == 500)
+        DrawTextEx(M_font2, "x1", (Vector2){1125, 725}, 15, 2, DARKGRAY);
     // 10. Choose pattern
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover10))
     {
@@ -374,7 +383,7 @@ int draw_grid()
 
 void clear_cells()
 {
-   
+
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
@@ -383,8 +392,7 @@ void clear_cells()
         }
     }
     gamePaused = true;
-    updateCount = 0;   
-   
+    updateCount = 0;
 }
 
 void create_cells()
@@ -455,10 +463,11 @@ void update_grid()
             grid[column][row] = new_grid[column][row];
         }
     }
-    if (!gamePaused) {
-    updateCount++;
+    if (!gamePaused)
+    {
+        updateCount++;
     }
-    this_thread::sleep_for(chrono::milliseconds(speed)); 
+    this_thread::sleep_for(chrono::milliseconds(speed));
 }
 
 int surrounded_cells(int row, int col)
