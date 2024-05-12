@@ -6,7 +6,6 @@
 #include "../include/menu.hpp"
 #include "../include/option.hpp"
 
-
 void clear_cells();
 void create_cells();
 void update_grid();
@@ -18,8 +17,14 @@ int columns = 230;
 int rows = 135;
 bool grid[230][135];
 
+// Option pause
 bool gamePaused = false;
+
+// Count new generation
 int updateCount = 0;
+
+// Slow display grid
+// Clock updateClock = { 0 };
 
 
 
@@ -41,7 +46,6 @@ Texture2D M_background;
 Texture2D t_rect_op1;
 Texture2D t_next_g;
 Texture2D t_close_m;
-
 
 //**** RECT
 Rectangle rect_btn_hover1;
@@ -70,12 +74,10 @@ void load_img_game()
     close_m = LoadImage("assets/img/close.png");
     ImageResize(&close_m, 25, 25);
 
-
     M_background = LoadTexture("assets/img/background3.png");
     t_rect_op1 = LoadTextureFromImage(rect_op1);
     t_next_g = LoadTextureFromImage(next_g);
     t_close_m = LoadTextureFromImage(close_m);
-
 }
 
 // UnLoad images
@@ -88,7 +90,6 @@ void unload_img_game()
     UnloadTexture(t_rect_op1);
     UnloadTexture(t_next_g);
     UnloadTexture(t_close_m);
-
 }
 
 // Load font
@@ -112,15 +113,14 @@ int design_game()
     DrawTextEx(M_font2, "Game of Life", (Vector2){550, 4}, 30, 2, DARKGRAY);
     DrawText(TextFormat("New generations : %d", updateCount), 50, 8, 20, BLACK);
 
-// Logo next generation
+    // Logo next generation
     DrawTexture(t_next_g, 25, 8, WHITE);
 
     DrawRectangle(25, 30, 1150, 675, LIGHTGRAY);
 
     G_mousePoint = GetMousePosition();
 
-      // Back to menu
-
+    // Back to menu
     rect_close = {1150, 2, 25, 25};
     if (CheckCollisionPointRec(G_mousePoint, rect_close))
     {
@@ -134,9 +134,7 @@ int design_game()
     else
     {
         DrawTexture(t_close_m, 1150, 2, WHITE);
-
     }
-
 
     // 1. Random
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover1))
@@ -171,7 +169,6 @@ int design_game()
         DrawTextEx(M_font2, "Clear", (Vector2){90, 760}, 15, 2, DARKGRAY);
     }
 
-    
     // 3. Draw
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover3))
     {
@@ -232,7 +229,6 @@ int design_game()
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             gamePaused = false;
-
         }
     }
     else
@@ -241,7 +237,7 @@ int design_game()
         DrawTextEx(M_font2, "Play", (Vector2){585, 760}, 15, 2, DARKGRAY);
     }
 
-    // 7. Dowload
+    // 7. Load
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover7))
     {
         DrawTexture(t_rect_op1, 762, 692, WHITE);
@@ -258,7 +254,7 @@ int design_game()
         DrawTextEx(M_font2, "Load", (Vector2){825, 725}, 15, 2, DARKGRAY);
     }
 
-    // 8. Load
+    // 8. Saved
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover8))
     {
         DrawTexture(t_rect_op1, 762, 727, WHITE);
@@ -274,9 +270,8 @@ int design_game()
         DrawTexture(t_rect_op1, 760, 725, WHITE);
         DrawTextEx(M_font2, "Saved", (Vector2){825, 760}, 15, 2, DARKGRAY);
     }
- 
 
-  // 9. Speed
+    // 9. Speed
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover9))
     {
         DrawTexture(t_rect_op1, 1017, 692, WHITE);
@@ -411,14 +406,10 @@ void update_grid()
         for (int column = 0; column < columns; column++)
         {
             grid[column][row] = new_grid[column][row];
-
-
         }
-    } 
-        updateCount++;
-         printf("Nombre de mises à jour : %d\n", updateCount);
-
-        
+    }
+    updateCount++;
+    printf("Nombre de mises à jour : %d\n", updateCount);
 }
 
 int surrounded_cells(int row, int col)
@@ -485,8 +476,7 @@ int main()
     rect_btn_hover7 = {760, 715, 165, 35};
     rect_btn_hover8 = {760, 750, 165, 35};
     rect_btn_hover9 = {1025, 715, 165, 35};
-    rect_btn_hover10 = {1025, 750, 165, 35};   
-
+    rect_btn_hover10 = {1025, 750, 165, 35};
 
     // Menu
     load_img_menu();
