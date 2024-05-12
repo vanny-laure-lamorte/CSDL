@@ -1,6 +1,10 @@
 #include <raylib.h>
 #include <iostream>
 #include <fstream>
+
+#include <thread> 
+using namespace std;
+
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
@@ -28,10 +32,8 @@ bool gamePaused = true;
 // Count new generation
 int updateCount = 0;
 
-// Slow display grid
-// Clock updateClock = { 0 };
-
-
+// Speed to next generation
+int speed = 1;
 
 int gameOn = 0;
 
@@ -288,9 +290,27 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            gamePaused = true;          
-            draw_cells = !draw_cells;
+               
+           if (speed == 1){
+            speed = 50;
+
+           }
+
+           else if (speed == 50){
+            speed = 100;
+           }
+
+            else if (speed == 100){
+            speed = 500;
+           }
+
+           else if (speed == 500) {
+            speed = 1;
+           }       
+
+
         }
+
     }
     else
     {
@@ -340,6 +360,7 @@ int draw_grid()
 
 void clear_cells()
 {
+   
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
@@ -347,8 +368,9 @@ void clear_cells()
             grid[j][i] = false;
         }
     }
-    updateCount = 0; 
     gamePaused = true;
+    updateCount = 0;   
+   
 }
 
 void create_cells()
@@ -419,7 +441,12 @@ void update_grid()
             grid[column][row] = new_grid[column][row];
         }
     }
+    if (!gamePaused) {
     updateCount++;
+    }
+
+    this_thread::sleep_for(chrono::milliseconds(speed)); 
+    
 }
 
 int surrounded_cells(int row, int col)
