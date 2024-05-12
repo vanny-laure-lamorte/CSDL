@@ -33,6 +33,7 @@ Vector2 R_mousePoint = {0.0f, 0.0f};
 //**** RECT
 Rectangle rect_menu;
 Rectangle pattern1_rect;
+Rectangle pattern2_rect;
 
 // Images
 void load_img_option()
@@ -166,11 +167,14 @@ int draw_option()
     }
 
     // Load from Patterns
-    pattern1_rect = {220, 660, 120, 120};
-
     DrawRectangleRounded((Rectangle){200, 650, 800, 140}, 0.1f, 0, BLACK);
     DrawRectangleRoundedLines((Rectangle){200, 650, 800, 140}, 0.1f, 0, 2, WHITE);
+
+    pattern1_rect = {220, 660, 120, 120};
+    pattern2_rect = {400, 660, 120, 120};
+
     DrawRectangle(220, 660, 120, 120, BLUE);
+    DrawRectangle(400, 660, 120, 120, BLUE);
 
     if (CheckCollisionPointRec(R_mousePoint, pattern1_rect))
     {
@@ -179,5 +183,12 @@ int draw_option()
             return 11;
         }
     }
-        return 20;
+    else if (CheckCollisionPointRec(R_mousePoint, pattern2_rect))
+    {
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            return 12;
+        }
+    }
+    return 20;
 }

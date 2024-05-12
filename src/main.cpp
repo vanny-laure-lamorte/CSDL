@@ -554,11 +554,20 @@ int main()
         }
         else if (gameOn >= 10 && gameOn <= 15)
         {
-            if (gameOn == 11 && !loaded_paterns)
+            if (!loaded_paterns)
             {
-                load_grid("assets/json_patterns/pattern1.json");
+                if (gameOn == 11)
+                {
+                    load_grid("assets/json_patterns/pattern1.json");
+                }
+                else if (gameOn == 12)
+                {
+
+                    load_grid("assets/json_patterns/pattern2.json");
+                }
                 loaded_paterns = true;
             }
+
             if (!gamePaused)
             {
                 DrawTexture(M_background, 0, 0, WHITE);
