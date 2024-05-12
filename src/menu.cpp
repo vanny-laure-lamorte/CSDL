@@ -52,7 +52,7 @@ void load_img_menu()
     ImageResize(&btn3, 330, 330);
 
     // Images Texture
-    background = LoadTexture("assets/img/background3.png");
+    background = LoadTexture("assets/img/background2.png");
     t_btn1 = LoadTextureFromImage(btn1);
     t_btn2 = LoadTextureFromImage(btn2);
     t_btn3 = LoadTextureFromImage(btn3);

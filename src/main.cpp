@@ -1,8 +1,10 @@
 #include <raylib.h>
 #include <iostream>
 #include <fstream>
+#include <thread> 
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
+using namespace std;
 
 // Load files
 #include "../include/screen.hpp"
@@ -28,8 +30,8 @@ bool gamePaused = true;
 // Count new generation
 int updateCount = 0;
 
-// Slow display grid
-// Clock updateClock = { 0 };
+// Speed to next generation
+int speed = 1;
 
 int gameOn = 0;
 
@@ -87,7 +89,7 @@ void load_img_game()
     t_close_m = LoadTextureFromImage(close_m);
 }
 
-// UnLoad images
+// Unload images
 void unload_img_game()
 {
     UnloadImage(rect_op1);
@@ -304,8 +306,27 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            gamePaused = true;          
+               
+           if (speed == 1){
+            speed = 50;
+
+           }
+
+           else if (speed == 50){
+            speed = 100;
+           }
+
+            else if (speed == 100){
+            speed = 500;
+           }
+
+           else if (speed == 500) {
+            speed = 1;
+           }       
+
+
         }
+
     }
     else
     {
@@ -355,6 +376,7 @@ int draw_grid()
 
 void clear_cells()
 {
+   
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
@@ -362,8 +384,9 @@ void clear_cells()
             grid[j][i] = false;
         }
     }
-    updateCount = 0; 
     gamePaused = true;
+    updateCount = 0;   
+   
 }
 
 void create_cells()
@@ -434,7 +457,10 @@ void update_grid()
             grid[column][row] = new_grid[column][row];
         }
     }
+    if (!gamePaused) {
     updateCount++;
+    }
+    this_thread::sleep_for(chrono::milliseconds(speed)); 
 }
 
 int surrounded_cells(int row, int col)
@@ -549,7 +575,7 @@ int main()
     load_img_game();
     load_font_game();
 
-    // option
+    // Option
     load_font_option();
     load_img_option();
 
@@ -597,7 +623,6 @@ int main()
             }
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
-            // DrawRectangleLinesEx({1150, 2, 25, 25}, 5, RED);
 
             if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && draw_cell)
             {

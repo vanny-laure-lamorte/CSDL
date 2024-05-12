@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include "string"
 
+// Load Files
 #include "../include/screen.hpp"
 using namespace std;
 
@@ -132,20 +133,15 @@ int draw_option()
     // Images Option
     DrawTexture(t_square1, 900, 250, WHITE);
     DrawTexture(t_square2, 1050, 250, WHITE);
-
     DrawTexture(t_square3, 900, 340, WHITE);
     DrawTexture(t_square4, 1050, 340, WHITE);
-
     DrawTexture(t_square5, 900, 430, WHITE);
     DrawTexture(t_square6, 1050, 430, WHITE);
-
     DrawTexture(t_square7, 900, 555, WHITE);
     DrawTexture(t_square8, 1050, 555, WHITE);
 
     // back to menu
-
     rect_menu = {1070, 25, 100, 30};
-
     R_mousePoint = GetMousePosition();
 
     if (CheckCollisionPointRec(R_mousePoint, rect_menu))
