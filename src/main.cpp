@@ -16,10 +16,11 @@ int surrounded_cells(int row, int col);
 int cellSize = 5;
 int columns = 230;
 int rows = 135;
-
 bool grid[230][135];
 
 bool gamePaused = false;
+int updateCount = 0;
+
 
 
 int gameOn = 0;
@@ -109,9 +110,15 @@ int design_game()
 {
 
     DrawTextEx(M_font2, "Game of Life", (Vector2){550, 4}, 30, 2, DARKGRAY);
+    DrawText(TextFormat("Upadte grid: ", updateCount), 50, 8, 20, BLACK);
 
 // Logo next generation
     DrawTexture(t_next_g, 25, 8, WHITE);
+   
+
+
+
+
     DrawRectangle(25, 30, 1150, 675, LIGHTGRAY);
 
     G_mousePoint = GetMousePosition();
@@ -408,8 +415,14 @@ void update_grid()
         for (int column = 0; column < columns; column++)
         {
             grid[column][row] = new_grid[column][row];
+
+
         }
-    }
+    } 
+        updateCount++;
+         printf("Nombre de mises à jour : %d\n", updateCount);
+
+        
 }
 
 int surrounded_cells(int row, int col)
