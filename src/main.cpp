@@ -31,8 +31,6 @@ int updateCount = 0;
 // Slow display grid
 // Clock updateClock = { 0 };
 
-
-
 int gameOn = 0;
 
 //**** CLICK
@@ -66,7 +64,8 @@ Rectangle rect_btn_hover10;
 Rectangle rect_close;
 
 //**** DRAW CELLS
-bool draw_cells = false;
+bool draw_cell = false;
+bool erase_cell = false;
 
 // Load images
 void load_img_game()
@@ -183,7 +182,8 @@ int design_game()
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             gamePaused = true;
-            draw_cells = !draw_cells;
+            draw_cell = !draw_cell;
+            erase_cell = false;
         }
     }
     else
@@ -199,7 +199,9 @@ int design_game()
         DrawTextEx(M_font2, "Erase", (Vector2){350, 760}, 15, 2, DARKGRAY);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 10;
+            gamePaused = true;
+            erase_cell = !erase_cell;
+            draw_cell = false;
         }
     }
     else
@@ -217,7 +219,6 @@ int design_game()
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             gamePaused = true;
-            draw_cells = false;
         }
     }
     else
@@ -288,7 +289,6 @@ int design_game()
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             gamePaused = true;
-            draw_cells = !draw_cells;
         }
     }
     else
@@ -452,13 +452,22 @@ int surrounded_cells(int row, int col)
     return count;
 }
 
-void toggle_cell_state()
+void draw_cells()
 {
     int column = (G_mousePoint.x - 25) / cellSize;
     int row = (G_mousePoint.y - 30) / cellSize;
     if (column >= 0 && column < columns && row >= 0 && row < rows)
     {
         grid[column][row] = true;
+    }
+}
+void erase_cells()
+{
+    int column = (G_mousePoint.x - 25) / cellSize;
+    int row = (G_mousePoint.y - 30) / cellSize;
+    if (column >= 0 && column < columns && row >= 0 && row < rows)
+    {
+        grid[column][row] = false;
     }
 }
 
@@ -559,9 +568,13 @@ int main()
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
             // DrawRectangleLinesEx({1150, 2, 25, 25}, 5, RED);
 
-            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && draw_cells)
+            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && draw_cell)
             {
-                toggle_cell_state();
+                draw_cells();
+            }
+            else if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && erase_cell)
+            {
+                erase_cells();
             }
         }
 
