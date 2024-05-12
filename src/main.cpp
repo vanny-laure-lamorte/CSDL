@@ -1,27 +1,29 @@
 #include <raylib.h>
 #include <iostream>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
 // Load files
 #include "../include/screen.hpp"
 #include "../include/menu.hpp"
 #include "../include/option.hpp"
 
-
 void clear_cells();
 void create_cells();
 void update_grid();
 void paused_game();
 int surrounded_cells(int row, int col);
+void save_grid();
+void load_grid();
 
 int cellSize = 5;
 int columns = 230;
 int rows = 135;
 bool grid[230][135];
 
-bool gamePaused = false;
+bool gamePaused = true;
 int updateCount = 0;
-
-
 
 int gameOn = 0;
 
@@ -41,7 +43,6 @@ Texture2D M_background;
 Texture2D t_rect_op1;
 Texture2D t_next_g;
 Texture2D t_close_m;
-
 
 //**** RECT
 Rectangle rect_btn_hover1;
@@ -70,12 +71,10 @@ void load_img_game()
     close_m = LoadImage("assets/img/close.png");
     ImageResize(&close_m, 25, 25);
 
-
     M_background = LoadTexture("assets/img/background3.png");
     t_rect_op1 = LoadTextureFromImage(rect_op1);
     t_next_g = LoadTextureFromImage(next_g);
     t_close_m = LoadTextureFromImage(close_m);
-
 }
 
 // UnLoad images
@@ -88,7 +87,6 @@ void unload_img_game()
     UnloadTexture(t_rect_op1);
     UnloadTexture(t_next_g);
     UnloadTexture(t_close_m);
-
 }
 
 // Load font
@@ -112,18 +110,14 @@ int design_game()
     DrawTextEx(M_font2, "Game of Life", (Vector2){550, 4}, 30, 2, DARKGRAY);
     DrawText(TextFormat("Upadte grid: ", updateCount), 50, 8, 20, BLACK);
 
-// Logo next generation
+    // Logo next generation
     DrawTexture(t_next_g, 25, 8, WHITE);
-   
-
-
-
 
     DrawRectangle(25, 30, 1150, 675, LIGHTGRAY);
 
     G_mousePoint = GetMousePosition();
 
-      // Back to menu
+    // Back to menu
 
     rect_close = {1150, 2, 25, 25};
     if (CheckCollisionPointRec(G_mousePoint, rect_close))
@@ -138,9 +132,7 @@ int design_game()
     else
     {
         DrawTexture(t_close_m, 1150, 2, WHITE);
-
     }
-
 
     // 1. Random
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover1))
@@ -175,7 +167,6 @@ int design_game()
         DrawTextEx(M_font2, "Clear", (Vector2){90, 760}, 15, 2, DARKGRAY);
     }
 
-    
     // 3. Draw
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover3))
     {
@@ -184,7 +175,8 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 10;
+            gamePaused = true;
+            draw_cells = !draw_cells;
         }
     }
     else
@@ -236,7 +228,6 @@ int design_game()
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             gamePaused = false;
-
         }
     }
     else
@@ -253,7 +244,8 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 10;
+            gamePaused = true;
+            load_grid();
         }
     }
     else
@@ -270,7 +262,8 @@ int design_game()
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            return 10;
+            gamePaused = true;
+            save_grid();
         }
     }
     else
@@ -278,9 +271,8 @@ int design_game()
         DrawTexture(t_rect_op1, 760, 725, WHITE);
         DrawTextEx(M_font2, "Saved", (Vector2){825, 760}, 15, 2, DARKGRAY);
     }
- 
 
-  // 9. Speed
+    // 9. Speed
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover9))
     {
         DrawTexture(t_rect_op1, 1017, 692, WHITE);
@@ -415,14 +407,10 @@ void update_grid()
         for (int column = 0; column < columns; column++)
         {
             grid[column][row] = new_grid[column][row];
-
-
         }
-    } 
-        updateCount++;
-         printf("Nombre de mises à jour : %d\n", updateCount);
-
-        
+    }
+    updateCount++;
+    printf("Nombre de mises à jour : %d\n", updateCount);
 }
 
 int surrounded_cells(int row, int col)
@@ -472,6 +460,35 @@ void paused_game()
     gamePaused = !gamePaused;
 }
 
+void save_grid()
+{
+    nlohmann::json json_data;
+    for (int row = 0; row < rows; row++)
+    {
+        for (int column = 0; column < columns; column++)
+        {
+            json_data["grid"][row][column] = grid[column][row];
+        }
+    }
+    std::ofstream file("config.json");
+    file << json_data.dump(4);
+}
+
+void load_grid()
+{
+    std::ifstream file("config.json");
+    json json_data;
+    file >> json_data;
+
+    for (int row = 0; row < rows; row++)
+    {
+        for (int column = 0; column < columns; column++)
+        {
+            grid[column][row] = json_data["grid"][row][column];
+        }
+    }
+}
+
 int main()
 {
     InitWindow(screenWidth, screenHeight, "Game of Life");
@@ -489,8 +506,7 @@ int main()
     rect_btn_hover7 = {760, 715, 165, 35};
     rect_btn_hover8 = {760, 750, 165, 35};
     rect_btn_hover9 = {1025, 715, 165, 35};
-    rect_btn_hover10 = {1025, 750, 165, 35};   
-
+    rect_btn_hover10 = {1025, 750, 165, 35};
 
     // Menu
     load_img_menu();
