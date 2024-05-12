@@ -22,8 +22,16 @@ int columns = 230;
 int rows = 135;
 bool grid[230][135];
 
+// Option pause
 bool gamePaused = true;
+
+// Count new generation
 int updateCount = 0;
+
+// Slow display grid
+// Clock updateClock = { 0 };
+
+
 
 int gameOn = 0;
 
@@ -108,7 +116,7 @@ int design_game()
 {
 
     DrawTextEx(M_font2, "Game of Life", (Vector2){550, 4}, 30, 2, DARKGRAY);
-    DrawText(TextFormat("Upadte grid: ", updateCount), 50, 8, 20, BLACK);
+    DrawText(TextFormat("New generations : %d", updateCount), 50, 8, 20, BLACK);
 
     // Logo next generation
     DrawTexture(t_next_g, 25, 8, WHITE);
@@ -118,7 +126,6 @@ int design_game()
     G_mousePoint = GetMousePosition();
 
     // Back to menu
-
     rect_close = {1150, 2, 25, 25};
     if (CheckCollisionPointRec(G_mousePoint, rect_close))
     {
@@ -236,7 +243,7 @@ int design_game()
         DrawTextEx(M_font2, "Play", (Vector2){585, 760}, 15, 2, DARKGRAY);
     }
 
-    // 7. Dowload
+    // 7. Load
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover7))
     {
         DrawTexture(t_rect_op1, 762, 692, WHITE);
@@ -254,7 +261,7 @@ int design_game()
         DrawTextEx(M_font2, "Load", (Vector2){825, 725}, 15, 2, DARKGRAY);
     }
 
-    // 8. Load
+    // 8. Saved
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover8))
     {
         DrawTexture(t_rect_op1, 762, 727, WHITE);
