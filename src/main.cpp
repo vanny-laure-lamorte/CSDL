@@ -1,12 +1,10 @@
 #include <raylib.h>
 #include <iostream>
 #include <fstream>
-
 #include <thread> 
-using namespace std;
-
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
+using namespace std;
 
 // Load files
 #include "../include/screen.hpp"
@@ -87,7 +85,7 @@ void load_img_game()
     t_close_m = LoadTextureFromImage(close_m);
 }
 
-// UnLoad images
+// Unload images
 void unload_img_game()
 {
     UnloadImage(rect_op1);
@@ -444,9 +442,7 @@ void update_grid()
     if (!gamePaused) {
     updateCount++;
     }
-
     this_thread::sleep_for(chrono::milliseconds(speed)); 
-    
 }
 
 int surrounded_cells(int row, int col)
@@ -552,7 +548,7 @@ int main()
     load_img_game();
     load_font_game();
 
-    // option
+    // Option
     load_font_option();
     load_img_option();
 
@@ -586,7 +582,6 @@ int main()
             }
 
             DrawRectangleLinesEx({25, 30, 1150, 675}, 5, BLACK);
-            // DrawRectangleLinesEx({1150, 2, 25, 25}, 5, RED);
 
             if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && draw_cells)
             {
