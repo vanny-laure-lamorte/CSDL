@@ -194,6 +194,11 @@ int design_game()
         DrawTexture(t_rect_op1, 275, 690, WHITE);
         DrawTextEx(M_font2, "Draw", (Vector2){350, 725}, 15, 2, DARKGRAY);
     }
+    if (draw_cell)
+    {
+        DrawTexture(t_rect_op1, 275, 690, LIGHTGRAY);
+        DrawTextEx(M_font2, "Draw", (Vector2){350, 725}, 15, 2, DARKGRAY);
+    }
 
     // 4. Erase
     if (CheckCollisionPointRec(G_mousePoint, rect_btn_hover4))
@@ -210,6 +215,11 @@ int design_game()
     else
     {
         DrawTexture(t_rect_op1, 275, 725, WHITE);
+        DrawTextEx(M_font2, "Erase", (Vector2){350, 760}, 15, 2, DARKGRAY);
+    }
+    if (erase_cell)
+    {
+        DrawTexture(t_rect_op1, 275, 725, LIGHTGRAY);
         DrawTextEx(M_font2, "Erase", (Vector2){350, 760}, 15, 2, DARKGRAY);
     }
 
@@ -239,6 +249,8 @@ int design_game()
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
             gamePaused = false;
+            draw_cell = false;
+            erase_cell = false;
         }
     }
     else
