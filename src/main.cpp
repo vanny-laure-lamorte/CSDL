@@ -15,7 +15,7 @@ void update_grid();
 void paused_game();
 int surrounded_cells(int row, int col);
 void save_grid();
-void load_grid(const std::string& filename);
+void load_grid(const std::string &filename);
 
 int cellSize = 5;
 int columns = 230;
@@ -66,6 +66,9 @@ Rectangle rect_close;
 //**** DRAW CELLS
 bool draw_cell = false;
 bool erase_cell = false;
+
+//**** Load grid from patterns
+bool loaded_paterns = false;
 
 // Load images
 void load_img_game()
@@ -253,7 +256,7 @@ int design_game()
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
             gamePaused = true;
-            load_grid("config.json");
+            load_grid("assets/json_patterns/saved.json");
         }
     }
     else
@@ -486,11 +489,11 @@ void save_grid()
             json_data["grid"][row][column] = grid[column][row];
         }
     }
-    std::ofstream file("config.json");
+    std::ofstream file("assets/json_patterns/saved.json");
     file << json_data.dump(4);
 }
 
-void load_grid(const std::string& filename)
+void load_grid(const std::string &filename)
 {
     std::ifstream file(filename);
     json json_data;
@@ -546,11 +549,16 @@ int main()
         ClearBackground(darkGreen);
         if (gameOn == 0)
         {
+            gamePaused = true;
             gameOn = menu();
         }
-        else if (gameOn == 10)
+        else if (gameOn >= 10 && gameOn <= 15)
         {
-
+            if (gameOn == 11 && !loaded_paterns)
+            {
+                load_grid("assets/json_patterns/pattern1.json");
+                loaded_paterns = true;
+            }
             if (!gamePaused)
             {
                 DrawTexture(M_background, 0, 0, WHITE);
@@ -580,6 +588,8 @@ int main()
 
         else if (gameOn == 20)
         {
+            loaded_paterns = false;
+            gamePaused = true;
             gameOn = draw_option();
         }
         EndDrawing();

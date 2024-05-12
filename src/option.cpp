@@ -23,7 +23,6 @@ Texture2D t_square6;
 Texture2D t_square7;
 Texture2D t_square8;
 
-
 //**** FONT
 Font R_font1;
 Font R_font2;
@@ -33,6 +32,7 @@ Vector2 R_mousePoint = {0.0f, 0.0f};
 
 //**** RECT
 Rectangle rect_menu;
+Rectangle pattern1_rect;
 
 // Images
 void load_img_option()
@@ -141,7 +141,6 @@ int draw_option()
     DrawTexture(t_square7, 900, 555, WHITE);
     DrawTexture(t_square8, 1050, 555, WHITE);
 
-
     // back to menu
 
     rect_menu = {1070, 25, 100, 30};
@@ -165,5 +164,20 @@ int draw_option()
         DrawRectangleRoundedLines((Rectangle){1070, 25, 100, 30}, 0.1f, 0, 2, WHITE);
         DrawTextEx(R_font2, "MENU", (Vector2){1105, 32}, 15, 1, LIGHTGRAY);
     }
-    return 20;
+
+    // Load from Patterns
+    pattern1_rect = {220, 660, 120, 120};
+
+    DrawRectangleRounded((Rectangle){200, 650, 800, 140}, 0.1f, 0, BLACK);
+    DrawRectangleRoundedLines((Rectangle){200, 650, 800, 140}, 0.1f, 0, 2, WHITE);
+    DrawRectangle(220, 660, 120, 120, BLUE);
+
+    if (CheckCollisionPointRec(R_mousePoint, pattern1_rect))
+    {
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            return 11;
+        }
+    }
+        return 20;
 }
