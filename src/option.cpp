@@ -35,6 +35,9 @@ Vector2 R_mousePoint = {0.0f, 0.0f};
 Rectangle rect_menu;
 Rectangle pattern1_rect;
 Rectangle pattern2_rect;
+Rectangle pattern3_rect;
+Rectangle pattern4_rect;
+Rectangle pattern5_rect;
 
 // Images
 void load_img_option()
@@ -119,7 +122,7 @@ int draw_option()
 
     // Rules
     DrawTextEx(R_font1, "Rules", (Vector2){560, 120}, 40, 2, WHITE);
-    DrawTextEx(R_font2, "For a space that is populated", (Vector2){500, 200}, 20, 1, LIGHTGRAY);
+    DrawTextEx(R_font2, "For a space that is populated", (Vector2){500, 200}, 22, 2, LIGHTGRAY);
     DrawTextEx(R_font2, "- Each cell with one or no neighbors dies,", (Vector2){500, 270}, 15, 1, LIGHTGRAY);
     DrawTextEx(R_font2, " as if by solitude.", (Vector2){500, 290}, 15, 1, LIGHTGRAY);
 
@@ -127,7 +130,7 @@ int draw_option()
     DrawTextEx(R_font2, "overpopulation.", (Vector2){500, 370}, 15, 1, LIGHTGRAY);
     DrawTextEx(R_font2, " - Each cell with two or three neighbors survives.", (Vector2){500, 440}, 15, 1, LIGHTGRAY);
 
-    DrawTextEx(R_font2, "For a space that is empty or unpopulated", (Vector2){500, 520}, 20, 1, LIGHTGRAY);
+    DrawTextEx(R_font2, "For a space that is empty or unpopulated", (Vector2){500, 520}, 22, 2, LIGHTGRAY);
     DrawTextEx(R_font2, "- Each cell with three neighbors becomes populated.", (Vector2){500, 590}, 15, 1, LIGHTGRAY);
 
     // Images Option
@@ -163,14 +166,28 @@ int draw_option()
     }
 
     // Load from Patterns
-    DrawRectangleRounded((Rectangle){200, 650, 800, 140}, 0.1f, 0, BLACK);
-    DrawRectangleRoundedLines((Rectangle){200, 650, 800, 140}, 0.1f, 0, 2, WHITE);
+    DrawRectangleRounded((Rectangle){100, 650, 1000, 125}, 0.1f, 0, BLACK);
+    DrawRectangleRoundedLines((Rectangle){100, 650, 1000, 125}, 0.1f, 0, 2, WHITE);
 
-    pattern1_rect = {220, 660, 120, 120};
-    pattern2_rect = {400, 660, 120, 120};
+    pattern1_rect = {145, 690, 120, 70};
+    DrawRectangle(145, 690, 120, 70, BLUE);
+    DrawTextEx(R_font2, "Pattern 1", (Vector2){170, 665}, 15, 1, LIGHTGRAY);
 
-    DrawRectangle(220, 660, 120, 120, BLUE);
-    DrawRectangle(400, 660, 120, 120, BLUE);
+    pattern2_rect = {345, 690, 120, 70};
+    DrawRectangle(345, 690, 120, 70, BLUE);
+    DrawTextEx(R_font2, "Pattern 2", (Vector2){370, 665}, 15, 1, LIGHTGRAY);
+
+    pattern3_rect = {545, 690, 120, 70};
+    DrawRectangle(545, 690, 120, 70, BLUE);
+    DrawTextEx(R_font2, "Pattern 3", (Vector2){570, 665}, 15, 1, LIGHTGRAY);
+
+    pattern4_rect = {745, 690, 120, 70};
+    DrawRectangle(745, 690, 120, 70, BLUE);
+    DrawTextEx(R_font2, "Pattern 4", (Vector2){770, 665}, 15, 1, LIGHTGRAY);
+
+    pattern5_rect = {945, 690, 120, 70};
+    DrawRectangle(945, 690, 120, 70, BLUE);
+    DrawTextEx(R_font2, "Pattern 5", (Vector2){970, 665}, 15, 1, LIGHTGRAY);
 
     if (CheckCollisionPointRec(R_mousePoint, pattern1_rect))
     {

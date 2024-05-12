@@ -304,7 +304,7 @@ int design_game()
         DrawTexture(t_rect_op1, 1017, 692, WHITE);
         DrawTextEx(M_font2, "Speed", (Vector2){1075, 725}, 15, 2, DARKGRAY);
 
-        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
                
            if (speed == 1){
@@ -323,8 +323,6 @@ int design_game()
            else if (speed == 500) {
             speed = 1;
            }       
-
-
         }
 
     }
