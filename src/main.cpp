@@ -15,7 +15,7 @@ void update_grid();
 void paused_game();
 int surrounded_cells(int row, int col);
 void save_grid();
-void load_grid();
+void load_grid(const std::string& filename);
 
 int cellSize = 5;
 int columns = 230;
@@ -250,10 +250,10 @@ int design_game()
         DrawTexture(t_rect_op1, 762, 692, WHITE);
         DrawTextEx(M_font2, "Load", (Vector2){825, 725}, 15, 2, DARKGRAY);
 
-        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
             gamePaused = true;
-            load_grid();
+            load_grid("config.json");
         }
     }
     else
@@ -268,7 +268,7 @@ int design_game()
         DrawTexture(t_rect_op1, 762, 727, WHITE);
         DrawTextEx(M_font2, "Saved", (Vector2){825, 760}, 15, 2, DARKGRAY);
 
-        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
             gamePaused = true;
             save_grid();
@@ -490,9 +490,9 @@ void save_grid()
     file << json_data.dump(4);
 }
 
-void load_grid()
+void load_grid(const std::string& filename)
 {
-    std::ifstream file("config.json");
+    std::ifstream file(filename);
     json json_data;
     file >> json_data;
 
