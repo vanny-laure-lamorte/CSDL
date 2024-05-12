@@ -110,14 +110,10 @@ int design_game()
 {
 
     DrawTextEx(M_font2, "Game of Life", (Vector2){550, 4}, 30, 2, DARKGRAY);
-    DrawText(TextFormat("Upadte grid: ", updateCount), 50, 8, 20, BLACK);
+    DrawText(TextFormat("New generations : %d", updateCount), 50, 8, 20, BLACK);
 
 // Logo next generation
     DrawTexture(t_next_g, 25, 8, WHITE);
-   
-
-
-
 
     DrawRectangle(25, 30, 1150, 675, LIGHTGRAY);
 
