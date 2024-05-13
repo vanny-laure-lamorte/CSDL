@@ -23,6 +23,11 @@ Texture2D t_square5;
 Texture2D t_square6;
 Texture2D t_square7;
 Texture2D t_square8;
+Texture2D img_pattern1;
+Texture2D img_pattern2;
+Texture2D img_pattern3;
+Texture2D img_pattern4;
+Texture2D img_pattern5;
 
 //**** FONT
 Font R_font1;
@@ -61,6 +66,13 @@ void load_img_option()
     t_square6 = LoadTextureFromImage(square6);
     t_square7 = LoadTextureFromImage(square7);
     t_square8 = LoadTextureFromImage(square8);
+
+    // Image Pattern
+    img_pattern1 = LoadTexture("assets/img/pattern1.png");
+    img_pattern2 = LoadTexture("assets/img/pattern2.png");
+    img_pattern3 = LoadTexture("assets/img/pattern3.png");
+    img_pattern4 = LoadTexture("assets/img/pattern4.png");
+    img_pattern5 = LoadTexture("assets/img/pattern5.png");
 }
 
 void unload_img_option()
@@ -84,6 +96,12 @@ void unload_img_option()
     UnloadTexture(t_square6);
     UnloadTexture(t_square7);
     UnloadTexture(t_square8);
+
+    UnloadTexture(img_pattern1);
+    UnloadTexture(img_pattern2);
+    UnloadTexture(img_pattern3);
+    UnloadTexture(img_pattern4);
+    UnloadTexture(img_pattern5);
 }
 
 // Font
@@ -170,23 +188,23 @@ int draw_option()
     DrawRectangleRoundedLines((Rectangle){100, 650, 1000, 125}, 0.1f, 0, 2, WHITE);
 
     pattern1_rect = {145, 690, 120, 70};
-    DrawRectangle(145, 690, 120, 70, BLUE);
     DrawTextEx(R_font2, "Pattern 1", (Vector2){170, 665}, 15, 1, LIGHTGRAY);
+    DrawTexture(img_pattern1, 145, 690, WHITE);
 
     pattern2_rect = {345, 690, 120, 70};
-    DrawRectangle(345, 690, 120, 70, BLUE);
+    DrawTexture(img_pattern2, 345, 690, WHITE);
     DrawTextEx(R_font2, "Pattern 2", (Vector2){370, 665}, 15, 1, LIGHTGRAY);
 
     pattern3_rect = {545, 690, 120, 70};
-    DrawRectangle(545, 690, 120, 70, BLUE);
+    DrawTexture(img_pattern3, 545, 690, WHITE);
     DrawTextEx(R_font2, "Pattern 3", (Vector2){570, 665}, 15, 1, LIGHTGRAY);
 
     pattern4_rect = {745, 690, 120, 70};
-    DrawRectangle(745, 690, 120, 70, BLUE);
+    DrawTexture(img_pattern4, 745, 690, WHITE);
     DrawTextEx(R_font2, "Pattern 4", (Vector2){770, 665}, 15, 1, LIGHTGRAY);
 
     pattern5_rect = {945, 690, 120, 70};
-    DrawRectangle(945, 690, 120, 70, BLUE);
+    DrawTexture(img_pattern5, 945, 690, WHITE);
     DrawTextEx(R_font2, "Pattern 5", (Vector2){970, 665}, 15, 1, LIGHTGRAY);
 
     if (CheckCollisionPointRec(R_mousePoint, pattern1_rect))
