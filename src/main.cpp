@@ -19,7 +19,7 @@ int surrounded_cells(int row, int col);
 void save_grid();
 void load_grid(const std::string &filename);
 
-int cellSize = 5;
+int cellSize = 15;
 int columns = 230;
 int rows = 135;
 bool grid[230][135];
@@ -362,7 +362,7 @@ int design_game()
 
 int draw_grid()
 {
-    for (int row = 0; row < rows; row++)
+    for (int row = 0; row < rows/3; row++)
     {
 
         for (int column = 0; column < columns; column++)
